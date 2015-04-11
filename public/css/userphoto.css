@@ -1,0 +1,449 @@
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+html,
+html:-webkit-full-screen,
+html:-moz-full-screen,
+html:-ms-fullscreen,
+html:full-screen,
+html:fullscreen {
+  width: 100%;
+  height: 100%;
+  font-size: 87.5%;
+}
+body {
+  min-height: 100%;
+  max-width: 640px;
+  min-width: 320px;
+  width: 100%;
+  margin: 0 auto;
+  font-family: Tahoma, Arial, Roboto, "Droid Sans", "Helvetica Neue", "Droid Sans Fallback", "Heiti SC", "Hiragino Sans GB", sans-serif;
+}
+.wrapper {
+  min-height: 100%;
+  height: auto;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  max-width: 640px;
+  min-width: 320px;
+  width: 100%;
+  margin: 0 auto;
+  font-family: Tahoma, Arial, Roboto, "Droid Sans", "Helvetica Neue", "Droid Sans Fallback", "Heiti SC", "Hiragino Sans GB", sans-serif;
+}
+.head {
+  margin: 0;
+  padding: 0;
+  max-width: 640px;
+  min-width: 320px;
+  width: 100%;
+  font-family: Tahoma, Arial, Roboto, "Droid Sans", "Helvetica Neue", "Droid Sans Fallback", "Heiti SC", "Hiragino Sans GB", sans-serif;
+  height: 3rem;
+  background-color: #3598db;
+  position: fixed;
+  z-index: 999;
+  margin: 0 auto;
+}
+.head_nav_box {
+  width: 100%;
+  height: 100%;
+}
+.head_nav {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: 100%;
+  float: left;
+  width: 8rem;
+}
+.head_nav div {
+  height: 100%;
+  float: left;
+  line-height: 3rem;
+  color: #fff;
+}
+.head_nav div i,
+.head_nav div i::before {
+  width: 100%;
+  height: 100%;
+  display: block;
+  line-height: 3rem;
+  color: #fff;
+  font-size: 1.5rem;
+}
+.head_nav div:nth-child(1) {
+  width: 3rem;
+  text-align: center;
+}
+.head_nav div:nth-child(2) {
+  width: 5rem;
+  text-align: left;
+}
+.head_user {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: 100%;
+  float: right;
+  width: 9rem;
+}
+.head_user div {
+  width: 33.3%;
+  height: 100%;
+  text-align: center;
+  float: right;
+  line-height: 3rem;
+  color: #fff;
+}
+.head_user div a {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.head_user div a i,
+.head_user div a i::before {
+  width: 100%;
+  height: 100%;
+  display: block;
+  line-height: 3rem;
+  color: #fff;
+  font-size: 1rem;
+}
+.head_user div span {
+  display: block;
+  width: 0.3rem;
+  height: 0.3rem;
+  background-color: #fff;
+  border-radius: 100%;
+  margin: 0.15rem;
+  margin-left: 1.3rem;
+}
+.head_user div span:nth-child(1) {
+  margin-top: 0.9rem;
+}
+.menu_box {
+  width: 16rem;
+  height: 32rem;
+  position: fixed;
+  background-color: #eee;
+  overflow: hidden;
+  top: 3rem;
+  z-index: 998;
+}
+.menu_list {
+  width: 100%;
+  height: 100%;
+}
+.my_user {
+  width: 100%;
+  height: 4.2rem;
+  margin: 0;
+  padding: 0;
+}
+.my_user div {
+  float: left;
+}
+.user_img {
+  height: 3rem;
+  width: 3rem;
+  overflow: hidden;
+  border-radius: 100%;
+  margin-top: 0.5rem;
+  margin-left: 10%;
+}
+.user_img img {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.user_name {
+  height: 100%;
+  width: 10rem;
+  line-height: 4rem;
+  text-indent: 0.5rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 1.2rem;
+}
+.menu_content {
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+}
+.menu_content ul {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+.menu_content ul li {
+  width: 100%;
+  height: 3rem;
+  line-height: 3rem;
+}
+.menu_content ul li a {
+  height: 100%;
+  width: 90%;
+  padding-left: 10%;
+  display: block;
+}
+.menu_content ul li a span {
+  text-indent: 0.5rem;
+  height: 100%;
+  display: block;
+  font-size: 1rem;
+  line-height: 3rem;
+}
+.menu_content ul li a i,
+.menu_content ul li a i::before {
+  display: block;
+  font-size: 1.3rem;
+  line-height: 3rem;
+  float: left;
+  color: #9a59b5;
+}
+.menu_content ul li:nth-child(1) a img {
+  height: 1.8rem;
+  width: auto;
+  margin-top: 0.6rem;
+  float: left;
+}
+.menu_content ul li:nth-child(3) a i,
+.menu_content ul li:nth-child(3) a i::before {
+  color: #27ae61;
+}
+.menu_content ul li:nth-child(4) a i,
+.menu_content ul li:nth-child(4) a i::before {
+  color: #d25400;
+}
+.user_menu_content {
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+}
+.user_menu_content ul {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+.user_menu_content ul li {
+  width: 100%;
+  height: 3rem;
+  line-height: 3rem;
+}
+.user_menu_content ul li a {
+  height: 100%;
+  width: 90%;
+  padding-left: 10%;
+  display: block;
+}
+.user_menu_content ul li a span {
+  text-indent: 0.5rem;
+  height: 100%;
+  display: block;
+  font-size: 1rem;
+  line-height: 3rem;
+}
+.user_menu_content ul li a i,
+.user_menu_content ul li a i::before {
+  display: block;
+  font-size: 1.3rem;
+  line-height: 3rem;
+  float: left;
+  color: #9a59b5;
+}
+.user_menu_content ul li:nth-child(1) a i,
+.user_menu_content ul li:nth-child(1) a i::before {
+  color: #46b39e;
+}
+.user_menu_content ul li:nth-child(2) a i,
+.user_menu_content ul li:nth-child(2) a i::before {
+  color: #d25400;
+}
+.user_menu_content ul li:nth-child(3) a i,
+.user_menu_content ul li:nth-child(3) a i::before {
+  color: #58d68d;
+}
+.user_menu_content ul li:nth-child(4) a i,
+.user_menu_content ul li:nth-child(4) a i::before {
+  color: #3598db;
+}
+.theme {
+  width: 90%;
+  height: 3rem;
+  line-height: 3rem;
+  padding-left: 10%;
+}
+.user_out {
+  width: 12rem;
+  height: 6rem;
+  position: fixed;
+  z-index: 9999;
+  top: 0.7rem;
+  right: 1rem;
+  background-color: #fff;
+  box-shadow: 0px 0px 5px #eee;
+  border-radius: 1px;
+}
+.user_out span {
+  display: block;
+  width: 100%;
+  height: 50%;
+  text-align: left;
+  text-indent: 1rem;
+  line-height: 3rem;
+}
+.other_show {
+  display: block;
+}
+.other_hidden {
+  display: none;
+}
+.trans_in {
+  -webkit-transition: -webkit-transform 0.5s;
+  -moz-transition: -moz-transform 0.5s;
+  transition: transform 0.5s;
+  -webkit-transform: translateX(0rem);
+  -moz-transform: translateX(0rem);
+  transform: translateX(0rem);
+}
+.trans_out {
+  -webkit-transition: -webkit-transform 0.5s;
+  -moz-transition: -moz-transform 0.5s;
+  transition: transform 0.5s;
+  -webkit-transform: translateX(-16rem);
+  -moz-transform: translateX(-16rem);
+  transform: translateX(-16rem);
+}
+.pink {
+  max-width: 640px;
+  min-width: 320px;
+  width: 100%;
+  font-family: Tahoma, Arial, Roboto, "Droid Sans", "Helvetica Neue", "Droid Sans Fallback", "Heiti SC", "Hiragino Sans GB", sans-serif;
+  height: 2000px;
+  position: fixed;
+  top: 3rem;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.login,
+.register {
+  width: 4rem;
+  height: 100%;
+  line-height: 4rem;
+  float: left;
+  margin-left: 10%;
+}
+.copy {
+  height: 5%;
+  width: 100%;
+  text-align: center;
+  font-size: 0.725rem;
+  color: #333;
+  letter-spacing: 1px;
+}
+.loading {
+  width: 100%;
+  height: 3rem;
+  text-align: center;
+  line-height: 3rem;
+  background-color: #fff;
+  color: #3598db;
+}
+.loading i,
+.loading i::before {
+  line-height: 2rem;
+}
+.now_choice {
+  background-color: #3598db;
+}
+.nav {
+  max-width: 640px;
+  min-width: 320px;
+  margin: 0 auto;
+  font-family: Tahoma, Arial, Roboto, "Droid Sans", "Helvetica Neue", "Droid Sans Fallback", "Heiti SC", "Hiragino Sans GB", sans-serif;
+  width: 100%;
+  height: 3rem;
+  background-color: #3598db;
+  position: fixed;
+  z-index: 99;
+  line-height: 3rem;
+  color: #fff;
+}
+.nav div:nth-child(1) {
+  width: 25%;
+}
+.nav div:nth-child(2) {
+  width: 50%;
+  text-align: center;
+}
+.nav div {
+  float: left;
+  height: 100%;
+}
+.nav div:nth-child(1) {
+  text-indent: 0.5rem;
+}
+.userphoto_content {
+  width: 80%;
+  margin: 10%;
+}
+.userphoto_content input[type="submit"] {
+  width: 100%;
+  height: 2.5rem;
+  border: none;
+  background-color: #27ae61;
+  color: #fff;
+  margin-top: 2rem;
+  font-size: 1rem;
+  letter-spacing: 0.625rem;
+}
+.uploading {
+  width: 100%;
+  height: 2.5rem;
+  position: relative;
+  margin-top: 2rem;
+}
+.uploading input {
+  width: 100%;
+  height: 98%;
+  border: none;
+}
+.up_bt {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  line-height: 2.5rem;
+  text-align: center;
+  color: #fff;
+  letter-spacing: 0.625rem;
+  background-color: #f39c11;
+  pointer-events: none;
+}
+.user_img_box {
+  width: 100%;
+  height: 16rem;
+  box-shadow: 0px 0px 4px #000;
+}
+.user_img_box img {
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border: none;
+}
+.go_back a {
+  color: #fff;
+}

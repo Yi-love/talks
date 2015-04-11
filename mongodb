@@ -1,0 +1,95 @@
+MongoDB常用命令： 
+
+超级用户相关： 
+
+use admin 
+#增加或修改用户密码 
+db.addUser(ixigua,'pwd') 
+#查看用户列表 
+db.system.users.find() 
+#用户认证 
+db.auth(ixigua,'pwd') 
+#删除用户 
+db.removeUser('mongodb') 
+#查看所有用户 
+show users 
+#查看所有数据库 
+show dbs 
+#查看所有的collection 
+show collections 
+#查看各collection的状态 
+db.printCollectionStats() 
+#查看主从复制状态 
+db.printReplicationInfo() 
+#修复数据库 
+db.repairDatabase() 
+#设置记录profiling，0=off 1=slow 2=all 
+db.setProfilingLevel(1) 
+#查看profiling 
+show profile 
+#拷贝数据库 
+db.copyDatabase('mail_addr','mail_addr_tmp') 
+#删除collection 
+db.mail_addr.drop() 
+#删除当前的数据库 
+db.dropDatabase() 
+
+
+客户端连接： 
+/usr/local/mongodb/bin/mongo 8.8.88/ixigualib -u ixigua -p 'pwd' 
+
+
+增删改： 
+#存储嵌套的对象 
+db.foo.save({'name':'ysz','address':{'city':'beijing','post':100096},'phone':[138,139]}) 
+#存储数组对象 
+db.user_addr.save({'Uid':'yushunzhi@sohu.com','Al':['test-1@sohu.com','test-2@sohu.com']}) 
+#根据query条件修改，如果不存在则插入，允许修改多条记录 
+db.foo.update({'yy':5},{'$set':{'xx':2}},upsert=true,multi=true) 
+#删除yy=5的记录 
+db.foo.remove({'yy':5}) 
+#删除所有的记录 
+db.foo.remove() 
+
+
+索引： 
+#增加索引：1(ascending),-1(descending) 
+db.things.ensureIndex({firstname: 1, lastname: 1}, {unique: true}); 
+#索引子对象 
+db.user_addr.ensureIndex({'Al.Em': 1}) 
+#查看索引信息 
+db.deliver_status.getIndexes() 
+db.deliver_status.getIndexKeys() 
+#根据索引名删除索引 
+db.user_addr.dropIndex('Al.Em_1') 
+
+
+查询： 
+#查找所有 
+db.foo.find() 
+#查找一条记录 
+db.foo.findOne() 
+#根据条件检索10条记录 
+db.foo.find({'msg':'Hello 1'}).limit(10) 
+#sort排序 
+db.deliver_status.find({'From':'ixigua@sina.com'}).sort({'Dt',-1}) 
+db.deliver_status.find().sort({'Ct':-1}).limit(1) 
+#count操作 
+db.user_addr.count() 
+#distinct操作 
+db.foo.distinct('msg') 
+#>操作 
+db.foo.find({"timestamp": {"$gte" : 2}}) 
+#子对象的查找 
+db.foo.find({'address.city':'beijing'}) 
+
+
+管理： 
+#查看collection数据的大小 
+db.deliver_status.dataSize() 
+#查看colleciont状态 
+db.deliver_status.stats() 
+#查询所有索引的大小 
+db.deliver_status.totalIndexSize() 
+#查看当前所使用的数据库 
+db 

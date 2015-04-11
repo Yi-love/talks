@@ -1,0 +1,96 @@
+doctype html
+html(lang='zh-cmn-Hans')
+  head
+    // 声明文档使用的字符编码
+    meta(charset='utf-8')
+    // 优先使用 IE 最新版本和 Chrome
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    // 页面描述
+    meta(name='description', content='talks,悄悄话首页 , index,同城交友首页')
+    // 页面关键词
+    meta(name='keywords', content='')
+    // 网页作者
+    meta(name='author', content='Yi, ya10302@sina.com')
+    // 搜索引擎抓取
+    meta(name='robots', content='index,悄悄话首页')
+    // 禁止百度转码
+    meta(http-equiv='Cache-Control', content='no-siteapp')
+    // 为移动设备添加 viewport
+    meta(name='viewport', content='initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no')
+    // `width=device-width` 会导致 iPhone 5 添加到主屏后以 WebApp 全屏模式打开页面时出现黑边 http://bigc.at/ios-webapp-viewport-meta.orz
+    // 启用360浏览器的极速模式(webkit)
+    meta(name='renderer', content='webkit')
+    // 避免IE使用兼容模式
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    // 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓
+    meta(name='HandheldFriendly', content='true')
+    // 微软的老式浏览器
+    meta(name='MobileOptimized', content='320')
+    // uc强制竖屏
+    meta(name='screen-orientation', content='portrait')
+    // QQ强制竖屏
+    meta(name='x5-orientation', content='portrait')
+    // UC强制全屏
+    meta(name='full-screen', content='yes')
+    // QQ强制全屏
+    meta(name='x5-fullscreen', content='true')
+    // UC应用模式
+    meta(name='browsermode', content='application')
+    // QQ应用模式
+    meta(name='x5-page-mode', content='app')
+    // windows phone 点击无高光
+    meta(name='msapplication-tap-highlight', content='no')
+    // 禁止缓存
+    meta(http-equiv='Expires', content='0')
+    meta(http-equiv='Pragma', content='no-cache')
+    meta(http-equiv='Cache-control', content='no-cache')
+    meta(http-equiv='Cache', content='no-cache')
+    title Talks-好友列表
+    link(rel='stylesheet', type='text/css', href='css/normalize.css')
+    link(rel='stylesheet', type='text/css', href='css/address.css')
+    link(rel='stylesheet', type='text/css', href='icomoon/style.css')
+  body
+    .wrapper
+      .main-bar
+        .main-back
+          a(href="/userindex")
+            i.icon-arrow-left2
+        .main-nav=user.nickname
+        .main-add
+          a(href="/search")
+            i.icon-user-plus
+      .friend_box_fixed
+        .search_box
+          input#searchfriend(type='text', placeholder='搜索')
+          button
+            i.icon-search3
+        .friend_menu
+          #all_bt 全部
+          #friend_bt 好友
+          #fance_bt 粉丝
+      .loading
+      .loading
+      .loading
+      .loading
+        i.icon-spinner
+        | loading...
+      if  frslist
+        ul#user_list_box.user_list_box
+          each friend in frslist
+            li.address_item(data-type=friend.ftype)
+              .address_user_img
+                img(src=friend.userimg, alt='')
+              .address_user_content
+                h3
+                  a(href="/user/"+friend._id)=friend.nickname
+                div
+                  a(href="/chat/"+friend._id)
+                    span
+                      i.icon-bubble
+                  span 好友：#{friend.frinum}
+                  span 粉丝：#{friend.fannum}
+              if friend.ftype
+                .adduser
+                  a(href="/address/adduser/"+friend._id+"/2") +好友
+    p.copy 版权所有:吉首大学 技术支持: 杨进益
+  script(type='text/javascript', src='js/address.js')

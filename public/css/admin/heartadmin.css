@@ -1,0 +1,254 @@
+.container-my{
+  font-size: 100%;
+  margin-top: -2rem;
+  width: 98%;
+  margin-left: 1%;
+}
+.adminlogo img{;
+	height: auto;
+	width: 60%;
+	margin-top: -5%;
+	margin-left: 5%;
+}
+.copy{
+	height: 3rem;
+	line-height: 3rem;
+	width: 100%;
+	text-align: center;
+	font-size: 0.875rem;
+	color: #333;
+	letter-spacing: 1px;
+}
+.userlist_title{
+	width: 100%;
+	height: 4rem;
+	border-bottom: 1px solid #e1e1e1;
+}
+.userlist_title h4{
+	width: 20%;
+	height: 3rem;
+	text-align: center;
+	line-height: 3rem;
+	font-size: 1.5rem;
+	float: left;
+	margin-right: 5%;
+	max-width: 10rem;
+	cursor: pointer;
+}
+.choice{
+	color: #297fb8;
+	border-bottom: 2px solid #297fb8;
+}
+.userlist_title h4:hover{
+	background-color: #297fb8;
+	color: #fff;
+	border-radius: 2px;
+}
+.heart_list{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+.user_item {
+	width: 100%;
+	height: 4rem;
+	box-shadow: 0px 1px 2px #aaa;
+	margin-bottom: 1px;
+}
+.user_item div{
+	height: 100%;
+	text-align: center;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	float: left;
+	line-height: 4rem;
+}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form , .active ,.navbar-inverse ,.navbar-inverse .navbar-toggle ,.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover{
+	background-color: #297fb8;
+	background-image: none;
+	border-color: #fff;
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.open>a{
+	background-image: none;
+	-webkit-box-shadow : none;
+	box-shadow: none;
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
+	background-color: #fff;
+	color: #297fb8;
+
+}
+.navbar-brand, .navbar-nav>li>a ,.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a{
+	text-shadow: none;
+}
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover{
+	background-color: #fff;
+	color: #297fb8;
+}
+.navbar-inverse .navbar-nav>li>a{
+	color: #fff;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu>li>a{
+	color: #fff;
+}
+@media screen and (min-width: 768px){
+	.navbar-inverse .navbar-nav .open .dropdown-menu>li>a{
+		color: #297fb8;
+	}
+}
+.say-content {
+  width: 100%;
+  height: auto;
+  background-color: #f1f1f1;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+.say-item {
+  width: 100%;
+  margin: 3% 0;
+  height: auto;
+  display: block;
+  background-color: #FFF;
+  list-style: none;
+  padding: 0;
+  border-top: 1px solid #e1e1e1;
+  border-bottom: 1px solid #e1e1e1;
+}
+.say-item-content {
+  width: 94%;
+  margin: 0 3%;
+  height: auto;
+  display: block;
+  overflow: hidden;
+}
+.say-user {
+  width: 100%;
+  height: 3.75rem;
+  overflow: hidden;
+  position: relative;
+}
+.user-img-box {
+  width: 3.75rem;
+  height: 100%;
+  float: left;
+}
+.user-img {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.user-img img {
+  width: 80%;
+  height: 80%;
+  margin: 10%;
+  border-radius: 100%;
+  vertical-align: middle;
+  box-shadow: 0px 0px 5px #eee;
+}
+.say-title {
+  width: auto;
+  height: 100%;
+  float: left;
+}
+.say-title h3,
+.say-title h6 {
+  margin: 0;
+  padding: 0;
+  height: auto;
+  text-indent: 0.2cm;
+}
+.say-title h3 {
+  margin-top: 0.6rem;
+  font-size: 1em;
+  color: #e91d62;
+  font-weight: normal;
+}
+.say-title h6 {
+  font-size: 0.625em;
+  color: #fd5621;
+  font-weight: normal;
+}
+.pushpin {
+  position: absolute;
+  top: 10%;
+  right: 4%;
+  z-index: 2;
+  color: #727272;
+}
+.article-content {
+  width: 100%;
+  letter-spacing: 2px;
+  line-height: 1.4em;
+  font-size: 0.875em;
+  color: #333333;
+}
+.article-img-box {
+  width: 60%;
+  height: auto;
+  overflow: hidden;
+}
+.article-img-box ul {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.article-img-box ul li {
+  width: 30%;
+  height: 4rem;
+  margin: 1.5%;
+  float: left;
+  list-style: none;
+}
+.article-img-box ul li img {
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+}
+.say-item-local-icon {
+  width: 100%;
+  height: 2.5rem;
+}
+.location {
+  width: auto;
+  float: left;
+  height: 100%;
+  line-height: 2.5rem;
+  margin-left: 3%;
+  overflow: hidden;
+  max-width: 40%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #727272;
+  font-size: 0.725rem;
+}
+.choice-icon {
+  width: auto;
+  float: right;
+  height: 100%;
+  line-height: 2.5rem;
+}
+.choice-icon span {
+  height: 100%;
+  display: block;
+  float: left;
+  width: 3rem;
+  color: #727272;
+}
+@media screen and (min-width: 641px){
+  .article-img-box ul li{
+    height: auto;
+  }
+}
+.addmore{
+  width: 100%;
+  height: 3rem;
+  background-color: #e1e1e1;
+  margin: 3% 0;
+  text-align: center;
+  line-height: 3rem;
+  color: #666;
+  cursor: pointer;
+}
