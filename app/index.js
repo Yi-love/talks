@@ -4,8 +4,11 @@ const bodyParser = require('koa-bodyparser');
 const router = require('./routes/index.js');
 const serve = require('koa-static');
 const path =require('path');
+const mongoose = require('mongoose');
 
 const app = new Koa();
+// 连接数据库
+mongoose.connect('mongodb://localhost/talks');
 
 app.keys = ['some secret hurr'];
 
