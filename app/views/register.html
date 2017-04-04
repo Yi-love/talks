@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <% include layout/meta.html %>
+  <title><%=title%></title>
+  <% include layout/common-css.html %>
+  <link rel="stylesheet" type="text/css" href="css/register.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="head">
+      <div class="head-logo-title">
+        <h3><a href="/">首页</a></h3>
+      </div>
+      <div class="logo">Join Us Now</div>
+    </div>
+    <div class="register">
+      <form action="/register" method="post">
+        <div class="controller">
+          <div class="forinput"><i class="icon-user2"></i></div>
+          <input type="text" name="username" placeholder="User">
+        </div>
+        <div class="controller">
+          <div class="forinput"><i class="icon-lock2"></i></div>
+          <input type="password" name="password" placeholder="Password">
+        </div>
+        <div class="controller">
+          <div class="forinput"><i class="icon-lock2"></i></div>
+          <input type="password" name="passwords" placeholder="Re-enter password">
+        </div>
+        <button class="register-bt">注册</button>
+      </form>
+      <div class="other-choice"><a href="/login">马上登录</a></div>
+    </div>
+    <% include layout/footer.html %>
+  </div>
+</body>
+</html> 

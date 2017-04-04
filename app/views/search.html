@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <% include layout/meta.html %>
+    <title><%=title%></title>
+    <% include layout/common-css.html %>
+    <link rel="stylesheet" type="text/css" href="css/search.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <% include layout/header.html %>
+      <!-- 主体部分-->
+      <div class="search_content">
+        <div class="loading"><i class="icon-spinner"></i>loading...</div>
+        <div class="search_box">
+          <form action="/search/searchuser" method="post">
+            <input type="text" name="nickname" placeholder="搜索">
+            <button><i class="icon-search3"></i></button>
+          </form>
+        </div>
+        <div class="nearby"><a href="#"><i class="icon-man-woman"> 附近的人</i></a></div>
+        <div class="hotpp"><a href="#"><i class="icon-user-tie"> 最红人</i></a></div>
+        <div class="topic"><a href="#"><i class="icon-glass"> 热门话题</i></a></div>
+        <div class="activity"><a href="#"><i class="icon-feed"> 热门活动</i></a></div>
+      </div>
+      <% include layout/footer.html %>
+    </div>
+  </body>
+  <% include layout/common-js.html %>
+  <script type="text/javascript">headexe();</script>
+</html>
