@@ -6,7 +6,7 @@
     <form #newUser="ngForm" (ngSubmit)="onSubmit($event)">
       <div class="form-group">
         <label for="username" class="lab"><i class="icon-user2"></i></label>
-        <input type="text" class="normal-input" name="username" placeholder="User name" [(ngModel)]="user.username" required minlength="2" maxlength="24" (blur)="onCheckUserName()" />
+        <input type="text" class="normal-input" name="username" autocomplete="off" placeholder="User name" [(ngModel)]="user.username" required minlength="2" maxlength="24" (blur)="onCheckUserName()" (keydown)="onRestHasUser()" />
         <label class="error" *ngIf="!empty.username"><i class="icon-cross" *ngIf="!valids.username||hasUser"></i><i class="icon-checkmark" *ngIf="valids.username&&!hasUser"></i></label>
       </div>
       <div class="form-group">
@@ -20,7 +20,7 @@
         <label class="error" *ngIf="!empty.repassword"><i class="icon-cross" *ngIf="!valids.repassword"></i><i class="icon-checkmark" *ngIf="valids.repassword"></i></label>
       </div>
       <div class="form-row">
-        <button class="bt register" [ngClass]="{'active':isCanSubmit}" type="submit">Sign up</button>
+        <button class="bt register" [ngClass]="{'active':isCanSubmit}" type="submit" [disabled]="!isCanSubmit">Sign up</button>
       </div>
     </form>
     <div class="row">

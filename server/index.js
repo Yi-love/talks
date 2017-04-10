@@ -28,7 +28,7 @@ require('./render')(app);
 app.use(jsonResponse);
 router(app);
 
-app.listen(3000 ,'172.18.11.10', ()=>{
+app.listen(3000 ,'127.0.0.1', ()=>{
   console.log(`server start listening...`);
 });
 

@@ -1,5 +1,5 @@
 export class  User {
-  protected username: string;
-  protected password: string;
+  username: string;
+  password: string;
   constructor(){}
 } 

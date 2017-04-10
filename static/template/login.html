@@ -3,17 +3,19 @@
     <a routerLink="/" class="home"><img src="/img/logo.png" class="logo" alt="Home"></a>
   </div>
   <div class="login-center">
-    <form >
+    <form #loginUser="ngForm" (ngSubmit)="onSubmit($event)">
       <div class="form-group">
         <label for="username" class="lab"><i class="icon-user2"></i></label>
-        <input type="text" class="normal-input" name="username" placeholder="User"/>
+        <input type="text" class="normal-input" name="username" autocomplete="off" placeholder="User name" [(ngModel)]="user.username" required minlength="2" maxlength="24"/>
+        <label class="error" *ngIf="!empty.username"><i class="icon-cross" *ngIf="!valids.username"></i><i class="icon-checkmark" *ngIf="valids.username"></i></label>
       </div>
       <div class="form-group">
         <label for="password" class="lab"><i class="icon-lock2"></i></label>
-        <input type="password" class="normal-input" name="password" placeholder="Password"/>
+        <input type="password" class="normal-input" name="password" placeholder="Password" [(ngModel)]="user.password" required minlength="6" maxlength="20" />
+        <label class="error" *ngIf="!empty.password"><i class="icon-cross" *ngIf="!valids.password"></i><i class="icon-checkmark" *ngIf="valids.password"></i></label>
       </div>
       <div class="form-row">
-        <button class="bt login">Sign in</button>
+        <button class="bt login"  [ngClass]="{'active':isCanSubmit}" type="submit" [disabled]="!isCanSubmit">Sign in</button>
       </div>
     </form>
     <div class="row">

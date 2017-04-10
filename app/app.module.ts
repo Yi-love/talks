@@ -11,6 +11,7 @@ import { RegisterComponent } from './components/register.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { RegisterService } from './services/register.service';
+import { LoginService } from './services/login.service';
 
 @NgModule({
   imports:[ BrowserModule ,
@@ -23,7 +24,8 @@ import { RegisterService } from './services/register.service';
                  LoginComponent , 
                  RegisterComponent
   ],
-  providers: [ RegisterService ],
+  providers: [ RegisterService ,
+               LoginService ],
   bootstrap:[ AppComponent ]
 })
 

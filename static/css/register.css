@@ -91,11 +91,10 @@
 .bt.register{
   background: #999;
   color: #fff;
+  box-shadow: 0px 2px 2px #163549;
 }
 .bt.register.active{
   background: #9a59b5;
-  color: #fff;
-  box-shadow: 0px 2px 2px #331f3b;
 }
 .row{
   width: 100%;

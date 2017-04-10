@@ -56,7 +56,6 @@ export class RegisterComponent implements AfterViewChecked {
           }else{
             this.empty[filed] = false;
           }
-
         }else{
           if ( filed === 'repassword' ){
             if( this.user['password'] !== this.user['repassword'] ) {
@@ -64,9 +63,6 @@ export class RegisterComponent implements AfterViewChecked {
             }else{
               this.valids[filed] = true;
             }
-          }else if( filed === 'username' ) {
-            this.hasUser = false;
-            this.valids[filed] = true;
           }else{
             this.valids[filed] = true;
           }
@@ -85,12 +81,15 @@ export class RegisterComponent implements AfterViewChecked {
         return this.isCanSubmit = false;
       }
     }
+    if( this.hasUser) {
+      return this.isCanSubmit = false;
+    }
     return this.isCanSubmit = true;
   }
+  onRestHasUser(){
+    this.hasUser = false;
+  }
   onCheckUserName(){
-    if( this.hasUser ) {
-      return ;
-    }
     this.isHasUser().then(result=>{
       if( this.hasUser ) {
         this.isCanSubmit = false;
@@ -98,9 +97,6 @@ export class RegisterComponent implements AfterViewChecked {
     }).catch(error=>this.error=error);
   }
   onSubmit(){
-    if( this.hasUser ) {
-      return ;
-    }
     this.isHasUser().then(result=>{
       if( !this.hasUser ) {
         this.signUp().then(result=>{
@@ -108,10 +104,15 @@ export class RegisterComponent implements AfterViewChecked {
             return this.router.navigate(['/']);
           }
         });
+      }else{
+        this.isCanSubmit = false;
       }
     }).catch(error=>this.error=error);
   }
   isHasUser(){
+    if( !this.user['username'] ) {
+      return Promise.reject('username is undefined');
+    }
     return this.registerService.isHasUserByuserName(this.user['username']).then(result=>this.hasUser=result['hasUser']);
   }
   signUp(){

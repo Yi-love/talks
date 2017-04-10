@@ -35,18 +35,22 @@
 }
 .normal-input{
   width: 100%;
-  padding: .5rem .5rem .5rem 2.5rem;
+  padding: .5rem 2.5rem .5rem 2.5rem;
   box-sizing: border-box;
   border: none;
   letter-spacing: 2px;
-  color: #eee;
+  color: #fff;
   outline: none;
   border-radius: 0;
   border-bottom: 1px solid #eee;
   background: transparent;
+  transition: all .2s;
 }
 .normal-input:focus{
   outline: none;
+  box-shadow: 0px 2px 20px #8b7676;
+  border-radius: 2px;
+  transform: translateY(-1px);
 }
 .normal-input::-webkit-input-placeholder{
   color: #FFF;
@@ -54,6 +58,14 @@
 .lab{
   position: absolute;
   left: 0;
+  top:0;
+  font-size: 1.2rem;
+  padding: 0.4rem;
+  color: #fff;
+}
+.form-group .error{
+  position: absolute;
+  right: 0;
   top:0;
   font-size: 1.2rem;
   padding: 0.4rem;
@@ -77,9 +89,12 @@
   outline: none;
 }
 .bt.login{
-  background: #3598db;
+  background: #999;
   color: #fff;
   box-shadow: 0px 2px 2px #163549;
+}
+.bt.login.active{
+  background: #3598db;
 }
 .row{
   width: 100%;
@@ -96,4 +111,13 @@
 }
 .right{
   float: right;
+}
+.form-group .icon-checkmark{
+  color: #08be08;
+}
+.form-group .icon-cross{
+  color: #e10606;
+}
+.form-group .icon-warning{
+  color: #ff760a;
 }
