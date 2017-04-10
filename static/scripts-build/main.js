@@ -25082,19 +25082,139 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
+var forms_1 = __webpack_require__(42);
+var router_1 = __webpack_require__(44);
+var register_service_1 = __webpack_require__(81);
+var register_user_module_1 = __webpack_require__(78);
 var RegisterComponent = (function () {
-    function RegisterComponent() {
+    function RegisterComponent(registerService, router) {
+        this.registerService = registerService;
+        this.router = router;
+        this.user = new register_user_module_1.RegisterUser();
+        this.hasUser = false;
+        this.isSave = false;
+        this.isCanSubmit = false;
+        this.valids = { 'username': false, 'password': false, 'repassword': false };
+        this.empty = { 'username': true, 'password': true, 'repassword': true };
+        this.vaildFiled = ['username', 'password', 'repassword'];
     }
+    RegisterComponent.prototype.ngAfterViewChecked = function () {
+        this.formChanged();
+    };
+    RegisterComponent.prototype.formChanged = function () {
+        var _this = this;
+        if (this.currentForm === this.newUser) {
+            return;
+        }
+        this.newUser = this.currentForm;
+        if (this.newUser) {
+            this.newUser.valueChanges
+                .subscribe(function (data) { return _this.onValueChanged(data); });
+        }
+    };
+    RegisterComponent.prototype.onValueChanged = function (data) {
+        if (!this.newUser) {
+            return;
+        }
+        var form = this.newUser.form;
+        for (var filed in this.valids) {
+            var control = form.get(filed);
+            if (control && control.dirty) {
+                if (!control.valid) {
+                    this.valids[filed] = false;
+                    if (this.user[filed] === '') {
+                        this.empty[filed] = true;
+                    }
+                    else {
+                        this.empty[filed] = false;
+                    }
+                }
+                else {
+                    if (filed === 'repassword') {
+                        if (this.user['password'] !== this.user['repassword']) {
+                            this.valids[filed] = false;
+                        }
+                        else {
+                            this.valids[filed] = true;
+                        }
+                    }
+                    else if (filed === 'username') {
+                        this.hasUser = false;
+                        this.valids[filed] = true;
+                    }
+                    else {
+                        this.valids[filed] = true;
+                    }
+                    this.empty[filed] = false;
+                }
+            }
+        }
+        ;
+        for (var filed in this.valids) {
+            if (!this.valids[filed]) {
+                return this.isCanSubmit = false;
+            }
+        }
+        for (var filed in this.empty) {
+            if (this.empty[filed]) {
+                return this.isCanSubmit = false;
+            }
+        }
+        return this.isCanSubmit = true;
+    };
+    RegisterComponent.prototype.onCheckUserName = function () {
+        var _this = this;
+        if (this.hasUser) {
+            return;
+        }
+        this.isHasUser().then(function (result) {
+            if (_this.hasUser) {
+                _this.isCanSubmit = false;
+            }
+        }).catch(function (error) { return _this.error = error; });
+    };
+    RegisterComponent.prototype.onSubmit = function () {
+        var _this = this;
+        if (this.hasUser) {
+            return;
+        }
+        this.isHasUser().then(function (result) {
+            if (!_this.hasUser) {
+                _this.signUp().then(function (result) {
+                    if (result) {
+                        return _this.router.navigate(['/']);
+                    }
+                });
+            }
+        }).catch(function (error) { return _this.error = error; });
+    };
+    RegisterComponent.prototype.isHasUser = function () {
+        var _this = this;
+        return this.registerService.isHasUserByuserName(this.user['username']).then(function (result) { return _this.hasUser = result['hasUser']; });
+    };
+    RegisterComponent.prototype.signUp = function () {
+        var _this = this;
+        return this.registerService.signUp(this.user).then(function (result) { return _this.isSave = result['isSave']; });
+    };
     return RegisterComponent;
 }());
+__decorate([
+    core_1.ViewChild('newUser'),
+    __metadata("design:type", forms_1.NgForm)
+], RegisterComponent.prototype, "currentForm", void 0);
 RegisterComponent = __decorate([
     core_1.Component({
         selector: 'register-app',
         templateUrl: 'template/register.html',
         styleUrls: ['css/register.css'],
-    })
+    }),
+    __metadata("design:paramtypes", [register_service_1.RegisterService,
+        router_1.Router])
 ], RegisterComponent);
 exports.RegisterComponent = RegisterComponent;
 
@@ -26439,6 +26559,7 @@ var index_component_1 = __webpack_require__(34);
 var login_component_1 = __webpack_require__(35);
 var register_component_1 = __webpack_require__(36);
 var app_routing_module_1 = __webpack_require__(73);
+var register_service_1 = __webpack_require__(81);
 var AppModule = (function () {
     function AppModule() {
     }
@@ -26456,7 +26577,7 @@ AppModule = __decorate([
             login_component_1.LoginComponent,
             register_component_1.RegisterComponent
         ],
-        providers: [],
+        providers: [register_service_1.RegisterService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);
@@ -71353,8 +71474,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'talks-app',
-        templateUrl: 'template/app.html',
-        styleUrls: ['css/app.css'],
+        template: '<router-outlet></router-outlet>'
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;
@@ -71372,6 +71492,238 @@ __webpack_require__(38);
 var platform_browser_dynamic_1 = __webpack_require__(37);
 var app_module_1 = __webpack_require__(39);
 platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1.AppModule);
+
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(0);
+var toPromise_1 = __webpack_require__(77);
+Observable_1.Observable.prototype.toPromise = toPromise_1.toPromise;
+//# sourceMappingURL=toPromise.js.map
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var root_1 = __webpack_require__(3);
+/* tslint:enable:max-line-length */
+/**
+ * Converts an Observable sequence to a ES2015 compliant promise.
+ *
+ * @example
+ * // Using normal ES2015
+ * let source = Rx.Observable
+ *   .just(42)
+ *   .toPromise();
+ *
+ * source.then((value) => console.log('Value: %s', value));
+ * // => Value: 42
+ *
+ * // Rejected Promise
+ * // Using normal ES2015
+ * let source = Rx.Observable
+ *   .throw(new Error('woops'))
+ *   .toPromise();
+ *
+ * source
+ *   .then((value) => console.log('Value: %s', value))
+ *   .catch((err) => console.log('Error: %s', err));
+ * // => Error: Error: woops
+ *
+ * // Setting via the config
+ * Rx.config.Promise = RSVP.Promise;
+ *
+ * let source = Rx.Observable
+ *   .of(42)
+ *   .toPromise();
+ *
+ * source.then((value) => console.log('Value: %s', value));
+ * // => Value: 42
+ *
+ * // Setting via the method
+ * let source = Rx.Observable
+ *   .just(42)
+ *   .toPromise(RSVP.Promise);
+ *
+ * source.then((value) => console.log('Value: %s', value));
+ * // => Value: 42
+ *
+ * @param PromiseCtor promise The constructor of the promise. If not provided,
+ * it will look for a constructor first in Rx.config.Promise then fall back to
+ * the native Promise constructor if available.
+ * @return {Promise<T>} An ES2015 compatible promise with the last value from
+ * the observable sequence.
+ * @method toPromise
+ * @owner Observable
+ */
+function toPromise(PromiseCtor) {
+    var _this = this;
+    if (!PromiseCtor) {
+        if (root_1.root.Rx && root_1.root.Rx.config && root_1.root.Rx.config.Promise) {
+            PromiseCtor = root_1.root.Rx.config.Promise;
+        }
+        else if (root_1.root.Promise) {
+            PromiseCtor = root_1.root.Promise;
+        }
+    }
+    if (!PromiseCtor) {
+        throw new Error('no Promise impl found');
+    }
+    return new PromiseCtor(function (resolve, reject) {
+        var value;
+        _this.subscribe(function (x) { return value = x; }, function (err) { return reject(err); }, function () { return resolve(value); });
+    });
+}
+exports.toPromise = toPromise;
+//# sourceMappingURL=toPromise.js.map
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var user_model_1 = __webpack_require__(79);
+var RegisterUser = (function (_super) {
+    __extends(RegisterUser, _super);
+    function RegisterUser() {
+        return _super.call(this) || this;
+    }
+    return RegisterUser;
+}(user_model_1.User));
+exports.RegisterUser = RegisterUser;
+
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var User = (function () {
+    function User() {
+    }
+    return User;
+}());
+exports.User = User;
+
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var http_1 = __webpack_require__(43);
+__webpack_require__(76);
+var HttpService = (function () {
+    function HttpService() {
+    }
+    HttpService.prototype.getResponse = function (res) {
+        var result = res.json();
+        if (+result.code !== 0) {
+            return Promise.reject(result);
+        }
+        return result.data;
+    };
+    HttpService.prototype.handleError = function (error) {
+        var errMsg;
+        if (error instanceof http_1.Response) {
+            var body = error.json() || '';
+            var err = body.error || JSON.stringify(body);
+            errMsg = error.status + " - " + (error.statusText || '') + " " + err;
+        }
+        else {
+            errMsg = error.message ? error.message : error.toString();
+        }
+        return Promise.reject(errMsg);
+    };
+    return HttpService;
+}());
+exports.HttpService = HttpService;
+
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(1);
+var http_1 = __webpack_require__(43);
+__webpack_require__(76);
+var http_service_1 = __webpack_require__(80);
+var RegisterService = (function (_super) {
+    __extends(RegisterService, _super);
+    function RegisterService(http) {
+        var _this = _super.call(this) || this;
+        _this.http = http;
+        _this.checkUserByuserNameUrl = '/api/register/checkUserByuserName';
+        _this.signupUrl = '/api/signup';
+        return _this;
+    }
+    RegisterService.prototype.isHasUserByuserName = function (username) {
+        var params = new http_1.URLSearchParams("username=" + username);
+        var options = new http_1.RequestOptions({ search: params });
+        return this.http.get(this.checkUserByuserNameUrl, options)
+            .toPromise()
+            .then(this.getResponse);
+        // .catch(this.handleError);
+    };
+    RegisterService.prototype.signUp = function (user) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(this.signupUrl, { user: user }, options)
+            .toPromise()
+            .then(this.getResponse);
+        // .catch(this.handleError);
+    };
+    return RegisterService;
+}(http_service_1.HttpService));
+RegisterService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], RegisterService);
+exports.RegisterService = RegisterService;
 
 
 /***/ })

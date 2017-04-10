@@ -10,6 +10,8 @@ import { RegisterComponent } from './components/register.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { RegisterService } from './services/register.service';
+
 @NgModule({
   imports:[ BrowserModule ,
             FormsModule ,
@@ -21,7 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
                  LoginComponent , 
                  RegisterComponent
   ],
-  providers: [  ],
+  providers: [ RegisterService ],
   bootstrap:[ AppComponent ]
 })
 

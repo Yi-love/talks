@@ -7,7 +7,45 @@
   <% include layout/common-css.html %>
 </head>
 <body>
-  <talks-app>Loading...</talks-app>
+  <h1 style="display: none;">Talks</h1>
+  <talks-app>
+    <style>
+    .app-wrapper{
+      height: 100%;
+      width: 100%;
+      position: relative;
+      background: linear-gradient(to bottom, #e5d4d1, #10aad0);
+    }
+    .app-wrapper .logo-wrapper{
+      width: 80px;
+      height: 80px;
+      overflow: hidden;
+      position: absolute;
+      z-index: 2;
+      bottom: 45%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: url(/img/logo.png) center no-repeat;
+      background-size: 100% 100%;
+      animation: jump 2s ease-in infinite alternate-reverse;
+    }
+    @keyframes jump {
+      from {
+        bottom: 45%;
+        width: 40px;
+        height: 40px;
+      }
+      to{
+        bottom: 50%;
+        width: 100px;
+        height: 100px;
+      }
+    }
+    </style>
+    <div class="app-wrapper">
+      <div class="logo-wrapper"></div>
+    </div>
+  </talks-app>
   <script type="text/javascript" src="/scripts-build/main.js"></script>
 </body>
 </html>

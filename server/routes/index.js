@@ -1,6 +1,6 @@
-const router = require('koa-router')();
-const index = require('./render/index.js');
+'use strict';
 
-router.get('/:route?',index.index);
-
-module.exports = router;
+module.exports = app => {
+  app.use(require('./api').routes());
+  app.use(require('./render').routes());
+};

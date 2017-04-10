@@ -1,9 +1,10 @@
+'use strict';
 const mongoose = require('mongoose');
 
 // 用户对象
 let UserSchema = new mongoose.Schema({
   username : String,
-  nickname : {type: String, default: '莫晨'},
+  nickname : {type: String, default: 'Yi'},
   email : {type: String, default: ''},
   tel : {type: String, default: ''},
   password : String,
@@ -21,11 +22,11 @@ let UserSchema = new mongoose.Schema({
   height : {type: String, default: ''},
   weight : {type: String, default: ''},
   figure : {type: String, default: '苗条'},
-  nation : {type: String, default: '侗族'},
+  nation : {type: String, default: '汉族'},
   constellation : {type: String, default: ''},
-  location : {type: String, default: '广州天河区'},
+  location : {type: String, default: '深圳'},
   address : {type: String, default: ''} ,
-  abstract : {type: String, default: '莫晨很懒什么也没有留下!'},
+  abstract : {type: String, default: '很懒什么也没有留下!'},
   birthday : {type: Date, default: Date.now()},
   blog : {type: String, default: ''},
   qq : {type: String, default: ''},
@@ -39,7 +40,7 @@ let UserSchema = new mongoose.Schema({
   friendssay : {type: String, default: ''},
   ip: {type: String, default: ''},
   device : {type: String, default: ''},
-  school : {type: String, default: '吉首大学大学'},
+  school : {type: String, default: 'New East'},
   constellat : {type: String, default: ''},
   freeze : {type: Number, default: 0}, // 0表示未冻结  1表示已经冻结
   isfirst : {type: Number, default: 1},

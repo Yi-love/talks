@@ -1,5 +1,5 @@
 'use strict';
-
+let webpack = require('webpack');
 let path = require('path');
 
 module.exports = {
@@ -21,4 +21,12 @@ module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"]
   },
+  plugins:[
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false,
+    //     drop_console: false,
+    //   }
+    // })
+  ]
 };

@@ -1,26 +1,30 @@
-<div class="wrapper">
-  <div class="head">
-    <div class="head-logo-title">
-      <h3><a routerLink="/">首页</a></h3>
-    </div>
-    <div class="logo">Join Us Now</div>
+<div class="register-wrapper">
+  <div class="go-back-index">
+    <a routerLink="/" class="home"><img src="/img/logo.png" class="logo" alt="Home"></a>
   </div>
-  <div class="register">
-    <form action="/register" method="post">
-      <div class="controller">
-        <div class="forinput"><i class="icon-user2"></i></div>
-        <input type="text" name="username" placeholder="User">
+  <div class="register-center">
+    <form #newUser="ngForm" (ngSubmit)="onSubmit($event)">
+      <div class="form-group">
+        <label for="username" class="lab"><i class="icon-user2"></i></label>
+        <input type="text" class="normal-input" name="username" placeholder="User name" [(ngModel)]="user.username" required minlength="2" maxlength="24" (blur)="onCheckUserName()" />
+        <label class="error" *ngIf="!empty.username"><i class="icon-cross" *ngIf="!valids.username||hasUser"></i><i class="icon-checkmark" *ngIf="valids.username&&!hasUser"></i></label>
       </div>
-      <div class="controller">
-        <div class="forinput"><i class="icon-lock2"></i></div>
-        <input type="password" name="password" placeholder="Password">
+      <div class="form-group">
+        <label for="password" class="lab"><i class="icon-lock2"></i></label>
+        <input type="password" class="normal-input" name="password" placeholder="Password" [(ngModel)]="user.password" required minlength="6" maxlength="20" />
+        <label class="error" *ngIf="!empty.password"><i class="icon-cross" *ngIf="!valids.password"></i><i class="icon-checkmark" *ngIf="valids.password"></i></label>
       </div>
-      <div class="controller">
-        <div class="forinput"><i class="icon-lock2"></i></div>
-        <input type="password" name="passwords" placeholder="Re-enter password">
+      <div class="form-group">
+        <label for="password" class="lab"><i class="icon-lock2"></i></label>
+        <input type="password" class="normal-input" name="repassword" placeholder="Re-enter password" [(ngModel)]="user.repassword" required minlength="6" maxlength="20" />
+        <label class="error" *ngIf="!empty.repassword"><i class="icon-cross" *ngIf="!valids.repassword"></i><i class="icon-checkmark" *ngIf="valids.repassword"></i></label>
       </div>
-      <button class="register-bt">注册</button>
+      <div class="form-row">
+        <button class="bt register" [ngClass]="{'active':isCanSubmit}" type="submit">Sign up</button>
+      </div>
     </form>
-    <div class="other-choice"><a routerLink="/login">马上登录</a></div>
+    <div class="row">
+      <a routerLink="/login" class="normal-bt right login">Sign in</a>
+    </div>
   </div>
 </div>

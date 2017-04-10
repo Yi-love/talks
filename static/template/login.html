@@ -1,22 +1,23 @@
-<div class="wrapper">
-  <div class="head">
-    <div class="head-logo-title">
-      <h3><a routerLink="/">首页</a></h3>
-    </div>
-    <div class="logo">Talk with Us</div>
+<div class="login-wrapper">
+  <div class="go-back-index">
+    <a routerLink="/" class="home"><img src="/img/logo.png" class="logo" alt="Home"></a>
   </div>
-  <div class="login">
-    <form action="/login" method="post">
-      <div class="controller">
-        <div class="forinput"><i class="icon-user2"></i></div>
-        <input type="text" name="username" placeholder="User"/>
+  <div class="login-center">
+    <form >
+      <div class="form-group">
+        <label for="username" class="lab"><i class="icon-user2"></i></label>
+        <input type="text" class="normal-input" name="username" placeholder="User"/>
       </div>
-      <div class="controller">
-        <div class="forinput"><i class="icon-lock2"></i></div>
-        <input type="password" name="password" placeholder="Password"/>
+      <div class="form-group">
+        <label for="password" class="lab"><i class="icon-lock2"></i></label>
+        <input type="password" class="normal-input" name="password" placeholder="Password"/>
       </div>
-      <button class="login-bt">登录</button>
+      <div class="form-row">
+        <button class="bt login">Sign in</button>
+      </div>
     </form>
-    <div class="other-choice"><a routerLink="">忘记密码?</a><a routerLink="/register">注册</a></div>
+    <div class="row">
+      <a routerLink="/register" class="normal-bt right register">Sign up</a>
+    </div>
   </div>
 </div>
