@@ -6,7 +6,7 @@ export class HttpService {
   getResponse( res:Response | any ){
     let result = res.json();
     if( +result.code !== 0 ) {
-      return Promise.reject(result);
+      return Promise.reject(result.message);
     }
     return Promise.resolve(result.data);
   }

@@ -19,7 +19,8 @@ export class LoginComponent implements AfterViewChecked {
   empty = {'username':true , 'password':true};
   isCanSubmit = false;
   isSignIn = false;
-  error:any;
+  error:any = '';
+  errorHandler:any;
 
   loginUser:NgForm;
   @ViewChild('loginUser') currentForm:NgForm;
@@ -92,11 +93,12 @@ export class LoginComponent implements AfterViewChecked {
             return this.router.navigate(['/']);
           }else{
             this.isCanSubmit = false;
+            return Promise.reject('login error');
           }
-        }).catch(error=>this.error=error);
+        }).catch(this.clearError.bind(this));
       }
       return Promise.reject('lsecret is gone');
-    }).catch(error=>this.error=error);
+    }).catch(this.clearError.bind(this));
   }
 
   signIn(data:any){
@@ -105,5 +107,14 @@ export class LoginComponent implements AfterViewChecked {
 
   getSecretKey(){
     return this.loginService.getSecretLoginKey();
+  }
+
+  clearError(error:any){
+    console.log('error:' , error);
+    clearTimeout(this.errorHandler);
+    this.error = error;
+    this.errorHandler = setTimeout(()=>{
+      this.error = '';
+    } , 3000);
   }
 }

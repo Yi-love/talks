@@ -18,7 +18,8 @@ export class RegisterComponent implements AfterViewChecked {
   hasUser = false;
   isSave = false;
   isCanSubmit = false;
-  error: any;
+  error: any = '';
+  errorHandler:any;
   valids = {'username':false , 'password':false , 'repassword':false};
   empty = {'username':true , 'password':true , 'repassword':true};
   vaildFiled = [ 'username' ,'password' , 'repassword' ];
@@ -92,15 +93,16 @@ export class RegisterComponent implements AfterViewChecked {
     this.hasUser = false;
   }
   onCheckUserName(){
-    this.isHasUser().then(result=>{
-      if( this.hasUser ) {
+    this.isHasUser().then(hasUser=>{
+      if( hasUser ) {
         this.isCanSubmit = false;
+        return Promise.reject('user is has.');
       }
-    }).catch(error=>this.error=error);
+    }).catch(this.clearError.bind(this));
   }
   onSubmit(){
-    this.isHasUser().then(result=>{
-      if( !this.hasUser ) {
+    this.isHasUser().then(hasUser=>{
+      if( !hasUser ) {
         this.getSecretKey().then(res=>{
           if( res.rsecret ) {
             let source = JSON.stringify(this.user);
@@ -110,18 +112,19 @@ export class RegisterComponent implements AfterViewChecked {
             cryped += cipher.final('hex');
             // console.log('data:' , cryped , rsecret);
             let userData = {'username':this.user['username'] , secret:cryped};
-            return this.signUp(userData).then(result=>{
-              if( result ) {
+            return this.signUp(userData).then(isSave=>{
+              if( isSave ) {
                 return this.router.navigate(['/']);
               }
-            }).catch(error=>this.error=error);;
+            }).catch(this.clearError.bind(this));;
           }
           return Promise.reject('rsecret is gone');
-        }).catch(error=>this.error=error);
+        }).catch(this.clearError.bind(this));
       }else{
         this.isCanSubmit = false;
+        return Promise.reject('user is has.');
       }
-    }).catch(error=>this.error=error);
+    }).catch(this.clearError.bind(this));
   }
   isHasUser(){
     if( !this.user['username'] ) {
@@ -134,5 +137,14 @@ export class RegisterComponent implements AfterViewChecked {
   }
   getSecretKey(){
     return this.registerService.getSecretRegisterKey();
+  }
+
+  clearError(error:any){
+    console.log('error:' , error);
+    clearTimeout(this.errorHandler);
+    this.error = error;
+    this.errorHandler = setTimeout(()=>{
+      this.error = '';
+    } , 3000);
   }
 }

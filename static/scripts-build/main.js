@@ -50987,6 +50987,7 @@ var LoginComponent = (function () {
         this.empty = { 'username': true, 'password': true };
         this.isCanSubmit = false;
         this.isSignIn = false;
+        this.error = '';
     }
     LoginComponent.prototype.ngAfterViewChecked = function () {
         this.formChanged();
@@ -51056,17 +51057,27 @@ var LoginComponent = (function () {
                     }
                     else {
                         _this.isCanSubmit = false;
+                        return Promise.reject('login error');
                     }
-                }).catch(function (error) { return _this.error = error; });
+                }).catch(_this.clearError.bind(_this));
             }
             return Promise.reject('lsecret is gone');
-        }).catch(function (error) { return _this.error = error; });
+        }).catch(this.clearError.bind(this));
     };
     LoginComponent.prototype.signIn = function (data) {
         return this.loginService.signIn(data);
     };
     LoginComponent.prototype.getSecretKey = function () {
         return this.loginService.getSecretLoginKey();
+    };
+    LoginComponent.prototype.clearError = function (error) {
+        var _this = this;
+        console.log('error:', error);
+        clearTimeout(this.errorHandler);
+        this.error = error;
+        this.errorHandler = setTimeout(function () {
+            _this.error = '';
+        }, 3000);
     };
     return LoginComponent;
 }());
@@ -51116,6 +51127,7 @@ var RegisterComponent = (function () {
         this.hasUser = false;
         this.isSave = false;
         this.isCanSubmit = false;
+        this.error = '';
         this.valids = { 'username': false, 'password': false, 'repassword': false };
         this.empty = { 'username': true, 'password': true, 'repassword': true };
         this.vaildFiled = ['username', 'password', 'repassword'];
@@ -51188,16 +51200,17 @@ var RegisterComponent = (function () {
     };
     RegisterComponent.prototype.onCheckUserName = function () {
         var _this = this;
-        this.isHasUser().then(function (result) {
-            if (_this.hasUser) {
+        this.isHasUser().then(function (hasUser) {
+            if (hasUser) {
                 _this.isCanSubmit = false;
+                return Promise.reject('user is has.');
             }
-        }).catch(function (error) { return _this.error = error; });
+        }).catch(this.clearError.bind(this));
     };
     RegisterComponent.prototype.onSubmit = function () {
         var _this = this;
-        this.isHasUser().then(function (result) {
-            if (!_this.hasUser) {
+        this.isHasUser().then(function (hasUser) {
+            if (!hasUser) {
                 _this.getSecretKey().then(function (res) {
                     if (res.rsecret) {
                         var source = JSON.stringify(_this.user);
@@ -51207,20 +51220,21 @@ var RegisterComponent = (function () {
                         cryped += cipher.final('hex');
                         // console.log('data:' , cryped , rsecret);
                         var userData = { 'username': _this.user['username'], secret: cryped };
-                        return _this.signUp(userData).then(function (result) {
-                            if (result) {
+                        return _this.signUp(userData).then(function (isSave) {
+                            if (isSave) {
                                 return _this.router.navigate(['/']);
                             }
-                        }).catch(function (error) { return _this.error = error; });
+                        }).catch(_this.clearError.bind(_this));
                         ;
                     }
                     return Promise.reject('rsecret is gone');
-                }).catch(function (error) { return _this.error = error; });
+                }).catch(_this.clearError.bind(_this));
             }
             else {
                 _this.isCanSubmit = false;
+                return Promise.reject('user is has.');
             }
-        }).catch(function (error) { return _this.error = error; });
+        }).catch(this.clearError.bind(this));
     };
     RegisterComponent.prototype.isHasUser = function () {
         var _this = this;
@@ -51235,6 +51249,15 @@ var RegisterComponent = (function () {
     };
     RegisterComponent.prototype.getSecretKey = function () {
         return this.registerService.getSecretRegisterKey();
+    };
+    RegisterComponent.prototype.clearError = function (error) {
+        var _this = this;
+        console.log('error:', error);
+        clearTimeout(this.errorHandler);
+        this.error = error;
+        this.errorHandler = setTimeout(function () {
+            _this.error = '';
+        }, 3000);
     };
     return RegisterComponent;
 }());
@@ -51283,7 +51306,7 @@ var HttpService = (function () {
     HttpService.prototype.getResponse = function (res) {
         var result = res.json();
         if (+result.code !== 0) {
-            return Promise.reject(result);
+            return Promise.reject(result.message);
         }
         return Promise.resolve(result.data);
     };
