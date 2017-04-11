@@ -51077,7 +51077,7 @@ var LoginComponent = (function () {
         this.error = error;
         this.errorHandler = setTimeout(function () {
             _this.error = '';
-        }, 3000);
+        }, 4000);
     };
     return LoginComponent;
 }());
@@ -51232,7 +51232,7 @@ var RegisterComponent = (function () {
             }
             else {
                 _this.isCanSubmit = false;
-                return Promise.reject('user is has.');
+                return Promise.resolve('');
             }
         }).catch(this.clearError.bind(this));
     };
@@ -51257,7 +51257,7 @@ var RegisterComponent = (function () {
         this.error = error;
         this.errorHandler = setTimeout(function () {
             _this.error = '';
-        }, 3000);
+        }, 4000);
     };
     return RegisterComponent;
 }());

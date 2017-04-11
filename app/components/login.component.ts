@@ -115,6 +115,6 @@ export class LoginComponent implements AfterViewChecked {
     this.error = error;
     this.errorHandler = setTimeout(()=>{
       this.error = '';
-    } , 3000);
+    } , 4000);
   }
 }

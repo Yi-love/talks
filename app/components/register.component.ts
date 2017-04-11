@@ -122,7 +122,7 @@ export class RegisterComponent implements AfterViewChecked {
         }).catch(this.clearError.bind(this));
       }else{
         this.isCanSubmit = false;
-        return Promise.reject('user is has.');
+        return Promise.resolve('');
       }
     }).catch(this.clearError.bind(this));
   }
@@ -145,6 +145,6 @@ export class RegisterComponent implements AfterViewChecked {
     this.error = error;
     this.errorHandler = setTimeout(()=>{
       this.error = '';
-    } , 3000);
+    } , 4000);
   }
 }

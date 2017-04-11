@@ -149,6 +149,7 @@
   overflow: hidden;
   max-width: 100%;
   box-sizing: border-box;
+  transition: all .5s;
 }
 .error-wrapper.active{
   transform: translateY(100%);
