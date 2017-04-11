@@ -2,6 +2,8 @@ import { Component  , AfterViewChecked , ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import * as crypto from 'crypto';
+
 import { LoginService } from '../services/login.service';
 
 import { User } from '../models/user.model';
@@ -75,16 +77,33 @@ export class LoginComponent implements AfterViewChecked {
   }
 
   onSubmit(){
-    this.signIn().then(result=>{
-      if( !this.isSignIn ) {
-        return this.router.navigate(['/']);
-      }else{
-        this.isCanSubmit = false;
+    this.getSecretKey().then(res=>{
+      if( res.lsecret ) {
+        let source = JSON.stringify(this.user);
+        let lsecret = res.lsecret;
+        let cipher = crypto.createCipher('aes-256-cbc' , lsecret);
+        let cryped = cipher.update(source , 'utf8' , 'hex');
+        cryped += cipher.final('hex');
+        // console.log('data:' , cryped , lsecret);
+        let userData = {'username':this.user['username'] , secret:cryped};
+        return this.signIn(userData).then(result=>{
+          if( result.isSignIn ) {
+            this.isSignIn = true;
+            return this.router.navigate(['/']);
+          }else{
+            this.isCanSubmit = false;
+          }
+        }).catch(error=>this.error=error);
       }
+      return Promise.reject('lsecret is gone');
     }).catch(error=>this.error=error);
   }
 
-  signIn(){
-    return this.loginService.signIn(this.user);
+  signIn(data:any){
+    return this.loginService.signIn(data);
+  }
+
+  getSecretKey(){
+    return this.loginService.getSecretLoginKey();
   }
 }

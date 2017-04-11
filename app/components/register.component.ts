@@ -2,6 +2,8 @@ import { Component , AfterViewChecked , ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import * as crypto from 'crypto';
+
 import { RegisterService } from '../services/register.service';
 
 import { RegisterUser } from '../models/register-user.module';
@@ -99,11 +101,23 @@ export class RegisterComponent implements AfterViewChecked {
   onSubmit(){
     this.isHasUser().then(result=>{
       if( !this.hasUser ) {
-        this.signUp().then(result=>{
-          if( result ) {
-            return this.router.navigate(['/']);
+        this.getSecretKey().then(res=>{
+          if( res.rsecret ) {
+            let source = JSON.stringify(this.user);
+            let rsecret = res.rsecret;
+            let cipher = crypto.createCipher('aes-256-cbc' , rsecret);
+            let cryped = cipher.update(source , 'utf8' , 'hex');
+            cryped += cipher.final('hex');
+            // console.log('data:' , cryped , rsecret);
+            let userData = {'username':this.user['username'] , secret:cryped};
+            return this.signUp(userData).then(result=>{
+              if( result ) {
+                return this.router.navigate(['/']);
+              }
+            }).catch(error=>this.error=error);;
           }
-        });
+          return Promise.reject('rsecret is gone');
+        }).catch(error=>this.error=error);
       }else{
         this.isCanSubmit = false;
       }
@@ -115,7 +129,10 @@ export class RegisterComponent implements AfterViewChecked {
     }
     return this.registerService.isHasUserByuserName(this.user['username']).then(result=>this.hasUser=result['hasUser']);
   }
-  signUp(){
-    return this.registerService.signUp(this.user).then(result=>this.isSave=result['isSave']);
+  signUp(data?:any){
+    return this.registerService.signUp(data).then(result=>this.isSave=result['isSave']);
+  }
+  getSecretKey(){
+    return this.registerService.getSecretRegisterKey();
   }
 }
