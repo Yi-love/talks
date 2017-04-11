@@ -65,15 +65,15 @@ exports.signup = async (ctx)=>{
   }
 
   let registerKey =  ctx.cookies.get(constant.REGISTER_KEY);
+  ctx.cookies.set(constant.REGISTER_KEY , '');
   let registerSecretKey = ctx.session[registerKey];
-
+  ctx.session[registerKey] = '';
+  
   let decipher = crypto.createDecipher('aes-256-cbc',registerSecretKey);
   let dec = decipher.update(userInfo.data.secret,'hex','utf8');
   dec += decipher.final('utf8');
 
-
   console.log('real source: ' , dec , typeof dec , JSON.parse(dec));
-
   try{
     dec = JSON.parse(dec);
   }catch(e){

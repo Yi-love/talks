@@ -25,7 +25,9 @@ exports.signin = async (ctx)=>{
   }
 
   let loginKey =  ctx.cookies.get(constant.LOGIN_KEY);
+  ctx.cookies.set(constant.LOGIN_KEY ,'');
   let loginSecretKey = ctx.session[loginKey];
+  ctx.session[loginKey] = '';
 
   let decipher = crypto.createDecipher('aes-256-cbc',loginSecretKey);
   let dec = decipher.update(userInfo.data.secret,'hex','utf8');
