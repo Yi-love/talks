@@ -3,6 +3,9 @@
 const router = require('koa-router')();
 const common = require('./common.js');
 
-router.get('/:route?',common.index);
+router.get('/register',common.index);
+router.get('/',common.index);
+router.get('/login',common.index);
+router.get('/userIndex/:uid',common.index);
 
 module.exports = router;

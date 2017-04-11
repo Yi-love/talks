@@ -12,5 +12,6 @@ router.post('/signup',register.signup);
 
 router.post('/signin',login.signin);
 router.get('/signin/secretLoginKey',login.secretLoginKey);
+router.get('/getUserInfo',login.getUserInfo);
 
 module.exports = router;

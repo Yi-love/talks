@@ -71,7 +71,18 @@ exports.signin = async (ctx)=>{
     ctx.JsonResponse.error('server is gone.');
   }else if ( user instanceof User ) {
     if ( user.password === crypto.createHash('sha256').update(userInfo.password).digest('hex') ) {
-      ctx.JsonResponse.success({isSignIn:true});
+      let key = 'rer 8 introduced the prefixe without standard 6a78cae4df0612ea10c2721e3b479d2fe110f31f369ebd3b81721fdf4569afa5 Dsin Gecko 10.0 (Firefox 10.0 / Thunderbird 10.0 / SeaMonkey 2.7), handling of text-overflow on blocks with inline overflow on both horizontal sides has been ';
+      let klength = key.length;
+      let keyStr = '';
+      for ( let i = 0 ; i < 16 ; i++ ){
+        let id = Math.floor(Math.random()*klength);
+        keyStr += key[id];
+      }
+      let userKey = crypto.createHash('sha256').update(userInfo.username+user._id+keyStr).digest('hex');
+      ctx.cookies.set(constant.LOGIN_SESSION_KEY , userKey);
+      delete user.password;
+      ctx.session[userKey] = user; 
+      ctx.JsonResponse.success({isSignIn:true,uid:user._id});
     }else{
       ctx.JsonResponse.error('username or password error');
     }
@@ -111,4 +122,25 @@ exports.secretLoginKey = async (ctx)=>{
 
   ctx.session[loginKey] = loginSecretKey;
   ctx.JsonResponse.success({lsecret:loginSecretKey});
+}
+
+exports.getUserInfo = async (ctx)=>{
+  if ( !ctx.query.uid ) {
+    return ctx.JsonResponse.error('get user error');
+  }
+  let uid = (ctx.query.uid+'').replace(/[^A-Za-z0-9_]/ig, '');
+  let userKey = ctx.cookies.get(constant.LOGIN_SESSION_KEY);
+  if ( userKey ) {
+    let data = ctx.session[userKey];
+    if ( typeof data === 'object' && data._id && uid === (data._id+'') ) {
+      let user = Object.assign({} , data);
+      delete user.password;
+      user.id = user._id;
+      delete user._id;
+      return ctx.JsonResponse.success({user:user});
+    }else{
+      ctx.cookies.set(constant.LOGIN_SESSION_KEY , '');
+    }
+  }
+  return ctx.JsonResponse.error('user id invalided');
 }

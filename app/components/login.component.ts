@@ -90,7 +90,7 @@ export class LoginComponent implements AfterViewChecked {
         return this.signIn(userData).then(result=>{
           if( result.isSignIn ) {
             this.isSignIn = true;
-            return this.router.navigate(['/']);
+            this.router.navigate(['/userIndex' , result.uid]);
           }else{
             this.isCanSubmit = false;
             return Promise.reject('login error');
