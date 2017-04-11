@@ -1,18 +1,14 @@
-import { Injectable } from '@angular/core';
-
 import { Response } from '@angular/http';
-
-import 'rxjs/add/operator/toPromise';
 
 export class HttpService {
   constructor(){}
 
-  getResponse( res:Response ):Promise<any>{
+  getResponse( res:Response | any ){
     let result = res.json();
     if( +result.code !== 0 ) {
       return Promise.reject(result);
     }
-    return result.data;
+    return Promise.resolve(result.data);
   }
   handleError(error: Response | any){
     let errMsg: string;
