@@ -1,4 +1,11 @@
 <div class="user-index-wrapper">
+  <div class="menu-list-wrapper" [ngClass]="{'active':showMenu}">
+    
+  </div>
+  <div class="menu-wrapper" (click)="onSelectMenu()">
+    <i class="icon-menu" *ngIf="!showMenu"></i>
+    <i class="icon-cross" *ngIf="showMenu"></i>
+  </div>
   <div class="error-wrapper" [ngClass]="{'active':error}">
     <span class="error-center"><i class="icon-warning"></i> {{error}}</span>
   </div>

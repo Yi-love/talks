@@ -13,9 +13,10 @@ import { UserInfo } from '../models/user-info.model';
 export class UserIndexComponent implements OnInit {
   user : UserInfo;
   error: string = '';
+  showMenu = false;
   errorHandler : any;
   constructor( private userIndexService : UserIndexService ,
-                private route : ActivatedRoute ){}
+               private route : ActivatedRoute ){}
 
   ngOnInit():void{
     this.route.params
@@ -29,5 +30,8 @@ export class UserIndexComponent implements OnInit {
     this.errorHandler = setTimeout(()=>{
       this.error = '';
     } , 4000);
+  }
+  onSelectMenu(){
+    this.showMenu = !this.showMenu;
   }
 }
