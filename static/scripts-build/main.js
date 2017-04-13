@@ -51419,6 +51419,7 @@ var UserIndexComponent = (function () {
     function UserIndexComponent(userIndexService, route) {
         this.userIndexService = userIndexService;
         this.route = route;
+        this.user = { username: '', nickname: '' };
         this.error = '';
         this.showMenu = false;
     }

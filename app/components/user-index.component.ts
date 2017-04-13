@@ -11,7 +11,7 @@ import { UserInfo } from '../models/user-info.model';
   styleUrls: ['css/user-index.css'],
 })
 export class UserIndexComponent implements OnInit {
-  user : UserInfo;
+  user : any = {username:'',nickname:''};
   error: string = '';
   showMenu = false;
   errorHandler : any;

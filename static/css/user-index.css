@@ -2,7 +2,6 @@
   width: 100%;
   height: 100%;
   position: relative;
-  background: linear-gradient(to bottom, #e5d4d1, #10aad0);  
 }
 .menu-wrapper{
   position: fixed;
@@ -29,7 +28,7 @@
   height: 100%;
   top:100%;
   left: 100%;
-  background: rgba(109, 76, 48, 0.64);
+  background: rgba(30, 31, 31, 0.64);
   border-radius: 100%;
   transition: all .5s;
 }
@@ -70,3 +69,144 @@
 .error-wrapper.active{
   transform: translateY(100%);
 }
+
+.center-wrapper{
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  padding: 3.5rem .5rem .5rem .5rem;
+  background: #f1f1f1;
+}
+.center-wrapper::-webkit-scrollbar{
+  width: 0;
+}
+.heart-list{
+  width: 100%;
+  height: auto;
+}
+.heart-list::after{
+  clear: both;
+  display: block;
+  content: "";
+}
+.heart-i{
+  width: 100%;
+  height: auto;
+  margin-bottom: 1.5rem;
+  background: #fff;
+}
+.heart-i-pank{
+  width: 100%;
+  padding-bottom: 56.25%;
+  position: relative;
+}
+.heart-i-pank::after{
+  clear: both;
+  display: block;
+  content: "";
+}
+.pank-wrapper{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #00dcff;
+}
+.heart-i-content{
+  width: 100%;
+  height: auto;
+  padding: .5rem;
+  box-sizing: border-box;
+}
+.heart-i-content::after{
+  clear: both;
+  display: block;
+  content: "";
+}
+.haert-i-title{
+  margin: 0;
+  padding: .5rem 0;
+  font-weight: 500;
+}
+.hear-i-operator{
+  width: 100%;
+  height: auto;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 2rem 0;
+}
+.heart-i-text{
+  line-height: 1.2;
+  max-height: 8.4rem;
+  min-height: 4rem;
+  overflow: hidden;
+  color: #8f8f92;
+  font-weight: 300;
+}
+.heart-read-more{
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  border:1px dashed #6dcec5;
+  border-radius: 3rem;
+  padding: .6rem 1.8rem;
+  color: #3cb19e;
+}
+.top-bar-wrapper{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 7;
+  width: 100%;
+  padding: 0 4rem;
+  box-sizing: border-box;
+  background: rgb(9, 197, 226);
+  box-shadow: 0rem 0.2rem 0.5rem #088a9e;
+}
+
+.top-bar-wrapper .top-username{
+  text-align: center;
+  width: 100%;
+  display: block;
+  font-size: 1.2rem;
+  padding: .8rem 0;
+  color: #fff;
+  min-height: 1.4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.top-bar-wrapper .top-left{
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: .8rem;
+  font-size: 1.2rem;
+  color: #fff;
+}
+.top-bar-wrapper .top-right{
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: .8rem;
+  font-size: 1.2rem;
+  color: #fff;
+  user-select:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
