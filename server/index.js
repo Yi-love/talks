@@ -4,6 +4,7 @@ const session = require('koa-generic-session');
 const MongoStore = require('koa-generic-session-mongo');
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
+const convert = require('koa-convert');
 const router = require('./routes');
 const serve = require('koa-static');
 const path =require('path');
@@ -16,10 +17,10 @@ const app = new Koa();
 mongoose.connect('mongodb://localhost/talks');
 
 app.keys = ['talks_keys'];
-app.use(session({
+app.use(convert(session({
   key : constant.SESSION_KEY,
   store: new MongoStore({db:constant.SESSION_DB})
-}));
+})));
 
 app.use(bodyParser());
 app.use(serve(path.join(__dirname , '../static')));
@@ -27,7 +28,7 @@ require('./render')(app);
 app.use(jsonResponse);
 router(app);
 
-app.listen(3000 ,'127.0.0.1', ()=>{
+app.listen(3000 ,'172.18.11.10', ()=>{
   console.log(`server start listening...`);
 });
 

@@ -69,14 +69,22 @@
 .error-wrapper.active{
   transform: translateY(100%);
 }
-
 .center-wrapper{
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
   box-sizing: border-box;
+  overflow-y: scroll; 
+  -webkit-overflow-scrolling: touch;
   padding: 3.5rem .5rem .5rem .5rem;
   background: #f1f1f1;
+}
+.center-wrapper::after{
+  clear: both;
+  display: block;
+  content: "";
+}
+.center-wrapper.forbidden-scroll{
+  overflow-y: hidden;
 }
 .center-wrapper::-webkit-scrollbar{
   width: 0;

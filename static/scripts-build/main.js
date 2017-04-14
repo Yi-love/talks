@@ -88177,7 +88177,7 @@ module.exports = {
 				"spec": ">=6.0.0 <7.0.0",
 				"type": "range"
 			},
-			"/Users/jin/git/talks/node_modules/browserify-sign"
+			"E:\\git\\talks\\node_modules\\browserify-sign"
 		]
 	],
 	"_cnpm_publish_time": 1487798867116,
@@ -88210,11 +88210,11 @@ module.exports = {
 		"/browserify-sign",
 		"/create-ecdh"
 	],
-	"_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.4.0.tgz",
+	"_resolved": "http://registry.npm.taobao.org/elliptic/download/elliptic-6.4.0.tgz",
 	"_shasum": "cac9af8762c85836187003c8dfe193e5e2eae5df",
 	"_shrinkwrap": null,
 	"_spec": "elliptic@^6.0.0",
-	"_where": "/Users/jin/git/talks/node_modules/browserify-sign",
+	"_where": "E:\\git\\talks\\node_modules\\browserify-sign",
 	"author": {
 		"name": "Fedor Indutny",
 		"email": "fedor@indutny.com"
@@ -88251,9 +88251,7 @@ module.exports = {
 	"directories": {},
 	"dist": {
 		"shasum": "cac9af8762c85836187003c8dfe193e5e2eae5df",
-		"size": 41164,
-		"noattachment": false,
-		"tarball": "http://registry.npm.taobao.org/elliptic/download/elliptic-6.4.0.tgz"
+		"tarball": "https://registry.npmjs.org/elliptic/-/elliptic-6.4.0.tgz"
 	},
 	"files": [
 		"lib"
@@ -88276,7 +88274,6 @@ module.exports = {
 	],
 	"name": "elliptic",
 	"optionalDependencies": {},
-	"publish_time": 1487798867116,
 	"readme": "ERROR: No README data found!",
 	"repository": {
 		"type": "git",
@@ -89447,7 +89444,7 @@ function HmacDRBG(options) {
   this.outLen = this.hash.outSize;
   this.minEntropy = options.minEntropy || this.hash.hmacStrength;
 
-  this._reseed = null;
+  this.reseed = null;
   this.reseedInterval = null;
   this.K = null;
   this.V = null;
@@ -89472,7 +89469,7 @@ HmacDRBG.prototype._init = function init(entropy, nonce, pers) {
   }
 
   this._update(seed);
-  this._reseed = 1;
+  this.reseed = 1;
   this.reseedInterval = 0x1000000000000;  // 2^48
 };
 
@@ -89514,11 +89511,11 @@ HmacDRBG.prototype.reseed = function reseed(entropy, entropyEnc, add, addEnc) {
          'Not enough entropy. Minimum is: ' + this.minEntropy + ' bits');
 
   this._update(entropy.concat(add || []));
-  this._reseed = 1;
+  this.reseed = 1;
 };
 
 HmacDRBG.prototype.generate = function generate(len, enc, add, addEnc) {
-  if (this._reseed > this.reseedInterval)
+  if (this.reseed > this.reseedInterval)
     throw new Error('Reseed is required');
 
   // Optional encoding
@@ -89542,7 +89539,7 @@ HmacDRBG.prototype.generate = function generate(len, enc, add, addEnc) {
 
   var res = temp.slice(0, len);
   this._update(add);
-  this._reseed++;
+  this.reseed++;
   return utils.encode(res, enc);
 };
 
