@@ -8,12 +8,16 @@ import { IndexComponent } from './components/index.component';
 import { LoginComponent } from './components/login.component';
 import { RegisterComponent } from './components/register.component';
 import { UserIndexComponent } from './components/user-index.component';
+import { UserComponent } from './components/user.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { RegisterService } from './services/register.service';
 import { LoginService } from './services/login.service';
 import { UserIndexService } from './services/user-index.service';
+import { HeartService } from './services/heart.service';
+
+import { StringSplitPipe } from './pipes/string-split.pipe';
 
 @NgModule({
   imports:[ BrowserModule ,
@@ -25,11 +29,14 @@ import { UserIndexService } from './services/user-index.service';
                  IndexComponent ,
                  LoginComponent , 
                  RegisterComponent ,
-                 UserIndexComponent
+                 UserIndexComponent , 
+                 UserComponent ,
+                 StringSplitPipe
   ],
   providers: [ RegisterService ,
                LoginService ,
-               UserIndexService
+               UserIndexService ,
+               HeartService
   ],
   bootstrap:[ AppComponent ]
 })

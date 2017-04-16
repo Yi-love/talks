@@ -34,5 +34,7 @@ export class UserInfo {
   major : string;
   hobit : string;
   friendssay : string;
+  followers:number;
+  following:number;
   constructor(){}
 }

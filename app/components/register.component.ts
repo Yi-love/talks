@@ -6,7 +6,7 @@ import * as crypto from 'crypto';
 
 import { RegisterService } from '../services/register.service';
 
-import { RegisterUser } from '../models/register-user.module';
+import { RegisterUser } from '../models/register-user.model';
 
 @Component({
   selector: 'register-app',

@@ -6,16 +6,6 @@ const User = require('./../../models/user');
 const constant = require('./../../config/constant.js');
 
 exports.signin = async (ctx)=>{
-  function findByUserName(username){
-    return new Promise((resolve ,reject)=>{
-      User.findByUserName(username+'' , (err,results)=>{
-        if (err) {
-          return reject(err);
-        }
-        return resolve(results);
-      });
-    }).catch(err=>err);
-  }
   let userInfo = ctx.request.body;
   if ( !userInfo.data || typeof userInfo.data !== 'object' ) {
     return ctx.JsonResponse.error('not parse 0 ');
@@ -63,7 +53,7 @@ exports.signin = async (ctx)=>{
   
   userInfo = dec;
 
-  let user = await findByUserName(userInfo.username);
+  let user = await User.findByUserName(userInfo.username+'').catch(err=>err);
 
   console.log('signin of user: ' , user);
 

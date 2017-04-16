@@ -1,0 +1,68 @@
+<div class="user-wrapper">
+  <div class="user-info-wrapper">
+    <div class="user-info-center">
+      <div class="row user-thumb">
+        <span class="user-thumb-border"><img class="thumb" src="{{user.userimg}}" alt=""></span>
+      </div>
+      <div class="row user-nickname">
+        <span class="nickname">{{user.nickname}}</span>
+      </div>
+      <div class="row user-abstract">
+        <span class="abstract">{{user.abstract}}</span>
+      </div>
+      <div class="row user-follow">
+        <div class="user-followers">
+          <span class="nums">{{user.followers}}</span>
+          <span class="numser">FOLLOWERS</span>
+        </div>
+        <div class="user-following">
+          <span class="nums">{{user.following}}</span>
+          <span class="numser">FOLLOWING</span>
+        </div>
+      </div>
+    </div>
+    <div class="row user-profile">
+      <ul class="row user-profile-list">
+        <li class="row user-profile-i">
+          <span class="profile-name">Email</span>
+          <span class="profile-text">{{user.email ? user.email : 'jin@qq.com'}}</span>
+        </li>
+        <li class="row user-profile-i">
+          <span class="profile-name">Telephone</span>
+          <span class="profile-text">{{user.tel ? user.tel : '18866668888'}}</span>
+        </li>
+        <li class="row user-profile-i">
+          <span class="profile-name">QQ</span>
+          <span class="profile-text">{{user.qq ? user.qq : '66668888'}}</span>
+        </li>
+        <li class="row user-profile-i">
+          <span class="profile-name">WeiXin</span>
+          <span class="profile-text">{{user.weixin ? user.weixin : 'Yi'}}</span>
+        </li>
+        <li class="row user-profile-i">
+          <span class="profile-name">Age</span>
+          <span class="profile-text">{{user.age ? user.age : '22'}}</span>
+        </li>
+        <li class="row user-profile-i">
+          <span class="profile-name">Birthday</span>
+          <span class="profile-text">{{user.birthday ? user.birthday : '2016-10-12'}}</span>
+        </li>
+        <li class="row user-profile-i">
+          <span class="profile-name">From</span>
+          <span class="profile-text">{{user.location ? user.location : 'China'}}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="top-bar-wrapper">
+    <div class="top-bar">
+      <span class="top-left" (click)="goBack()"><i class="icon-arrow-left2"></i></span>
+      <span class="user-title">Profile</span>
+      <a class="top-right" routerLink=""><i class="icon-plus"></i></a>
+    </div>
+    
+  </div>
+  <div class="error-wrapper" [ngClass]="{'active':error}">
+    <span class="error-center"><i class="icon-warning"></i> {{error}}</span>
+  </div>
+</div>

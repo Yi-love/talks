@@ -3,37 +3,19 @@
   height: 100%;
   position: relative;
 }
-.menu-wrapper{
-  position: fixed;
-  z-index: 9;
-  bottom: 1rem;
-  right: 1rem;
-  color: #fff;
-  width: 3rem;
-  text-align: center;
-  height: 3rem;
-  border-radius: 3rem;
-  background: #ea2bb8;
-  padding: .3rem;
-  box-shadow: 0px 0px 2.5rem #840686 inset, 2px 2px 0.8rem #e740f3;
-}
-.menu-wrapper i{
-  font-size: 1.8rem;
-  line-height: 3rem;
-}
 .menu-list-wrapper{
   position: fixed;
-  z-index: 8;
+  z-index: 6;
   width: 100%;
   height: 100%;
-  top:100%;
-  left: 100%;
+  top:0;
+  left: -100%;
   background: rgba(30, 31, 31, 0.64);
   border-radius: 100%;
   transition: all .5s;
 }
 .menu-list-wrapper.active{
-  transform: translate(-100%,-100%);
+  transform: translate(100%,0);
   border-radius: 0;
 }
 .error-wrapper .error-center .icon-warning{
@@ -75,8 +57,12 @@
   height: 100%;
   overflow-y: scroll;
   box-sizing: border-box;
-  padding: 3.5rem .5rem .5rem .5rem;
+  -webkit-overflow-scrolling : touch;
+  padding: .5rem .5rem .5rem .5rem;
   background: #f1f1f1;
+}
+.center-wrapper.forbidden-scroll{
+  overflow-y: hidden;
 }
 .center-wrapper::-webkit-scrollbar{
   width: 0;
@@ -113,6 +99,70 @@
   top: 0;
   left: 0;
   background: #00dcff;
+  overflow: hidden;
+}
+.heart-thumb{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.heart-thumb .thumb{
+  width: 100%;
+  min-height: 100%;
+  vertical-align: middle;
+}
+.heart-photo-list{
+  width: 400%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.heart-photo-list .photo-i{
+  width: 25%;
+  height: 100%;
+  list-style:none;
+  margin: 0;
+  padding: 0;
+  float: left;
+}
+.heart-photo-list .photo-i .photo{
+  width: 100%;
+  min-height: 100%;
+}
+.swipe-bar{
+  position: absolute;
+  bottom: 0;
+  left: .5rem;
+}
+.swipe-bar i{
+  padding: .5rem 0.2rem;
+  font-size: .6rem;
+  display: inline-block;
+}
+.swipe-bar .icon-radio-unchecked{
+  color: #fff;
+}
+.swipe-bar .icon-radio-checked{
+  color: #f141b6;
+}
+.heart-i-op{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  box-sizing: border-box;
+  z-index: 3;
+}
+.heart-i-op::after{
+  clear: both;
+  display: block;
+  content: "";
+}
+.heart-i-op i{
+  padding: .6rem;
+  font-size: 1.5rem;
+  color: #fff;
+  user-select: none;
+  display: inline-block;
 }
 .heart-i-content{
   width: 100%;
@@ -125,12 +175,24 @@
   display: block;
   content: "";
 }
-.haert-i-title{
+.haert-i-username{
   margin: 0;
-  padding: .5rem 0;
+  padding: 0 0 .5rem 0;
   font-weight: 500;
 }
-.hear-i-operator{
+.haert-i-username .username{
+  font-size: 1.6rem;
+  color: #333;
+}
+.haert-i-username .location{
+  padding-left: .5rem;
+  color: #666;
+}
+.haert-i-username .location i{
+  color: #0d6ac1;
+  font-size: 1rem;
+}
+.heart-i-operator{
   width: 100%;
   height: auto;
   text-align: center;
@@ -154,18 +216,24 @@
   padding: .6rem 1.8rem;
   color: #3cb19e;
 }
+.heart-read-more i{
+  font-size: 1.1rem;
+}
 .top-bar-wrapper{
   position: fixed;
   top: 0;
   left: 0;
   z-index: 7;
   width: 100%;
-  padding: 0 4rem;
   box-sizing: border-box;
-  background: rgb(9, 197, 226);
-  box-shadow: 0rem 0.2rem 0.5rem #088a9e;
+  background: rgb(5, 177, 216);
+  box-shadow: 0 0.2rem 0.5rem rgba(10, 42, 51, 0.31)
 }
-
+.top-bar-wrapper::after{
+  clear: both;
+  display: block;
+  content: "";
+}
 .top-bar-wrapper .top-username{
   text-align: center;
   width: 100%;
@@ -179,23 +247,33 @@
   white-space: nowrap;
 }
 .top-bar-wrapper .top-left{
-  position: absolute;
-  left: 0;
-  top: 0;
   padding: .8rem;
   font-size: 1.2rem;
   color: #fff;
+  float: left;
 }
 .top-bar-wrapper .top-right{
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: .8rem;
+  float: right;
   font-size: 1.2rem;
+  padding: .25rem .5rem .25rem .5rem;
   color: #fff;
   user-select:none;
+  display: block;
 }
-
+.top-bar-wrapper .top-right .userimg{
+  border-radius: 100%;
+  width: 2.5rem;
+  height: 2.5rem;
+  vertical-align: middle;
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid #046479;
+}
+.top-bar-wrapper .top-right .username{
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: .2rem;
+}
 
 
 

@@ -38,6 +38,8 @@ let UserSchema = new mongoose.Schema({
   major : {type: String, default: ''},
   hobit : {type: String, default: ''},
   friendssay : {type: String, default: ''},
+  followers: {type: Number, default: 0},
+  following:{type: Number, default: 0},
   ip: {type: String, default: ''},
   device : {type: String, default: ''},
   school : {type: String, default: 'New East'},
@@ -54,60 +56,46 @@ UserSchema.statics = {
     return this
              .find()
              .limit(pagesize)
-             .skip(start)
-             .exec(cb);
-  },
- fetchAll: function(cb){
-    return this
-             .find()
-             .exec(cb);
+             .skip(start);
   },
   findByFreeze: function(freeze , start , pagesize , cb){
     return this
              .find({freeze : freeze})
              .limit(pagesize)
-             .skip(start)
-             .exec(cb);
+             .skip(start);
   },
   findByUserName: function(username , cb){
     return this
-          .findOne({username: username})
-          .exec(cb);
+          .findOne({username: username});
   },
   findById: function(id , cb){
     return this
-              .findOne({_id: id})
-              .exec(cb);
+              .findOne({_id: id});
   },
   findByIdLike : function(id , cb){
     return this
-             .find({_id : new RegExp(id)})
-             .exec(cb);
+             .find({_id : new RegExp(id)});
   },
   findByNameLike : function(nickname , cb){
     return this
-             .find({nickname : new RegExp(nickname)})
-             .exec(cb);
+             .find({nickname : new RegExp(nickname)});
   },
   findByLocationLike : function(location , cb){
     return this
-             .find({location : new RegExp(location)})
-             .exec(cb);
+             .find({location : new RegExp(location)});
   },
   findByOnline : function(online , cb){
     return this
              .find({online : online})
-             .count()
-             .exec(cb);
+             .count();
   },
   findBySex : function(sex , cb){
     return this
              .find({sex : sex})
-             .count()
-             .exec(cb);
+             .count();
   },
   findCount : function(cb){
-    return this.count().exec(cb);
+    return this.count();
   }
 };
 

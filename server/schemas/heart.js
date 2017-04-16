@@ -8,7 +8,9 @@ let HeartSchema = new mongoose.Schema({
   content : String ,
   writetime : {type:Date , default:Date.now()},
   location : String,
-  writeimgs : String,
+  writeimgs : Array,
+  vedio:Array,
+  audio:Array,
   agree : {type:Number , default:0},
   transmit : {type:Number , default:0},
   commentnum : {type:Number , default:0},
@@ -24,58 +26,46 @@ HeartSchema.statics = {
           .find({userid: userid , freeze : 0})
           .sort({writetime: -1 })
                 .limit(pagesize)
-                .skip(start)
-          .exec(cb);
+                .skip(start);
   },
   findByUserids: function(userids , start , pagesize , cb){
     return this
           .find({userid: {$in: userids } , freeze : 0})
           .sort({writetime: -1 })
                 .limit(pagesize)
-                .skip(start)
-          .exec(cb);
+                .skip(start);
   },
   findById: function(heartid , cb){
     return this
           .findOne({_id: heartid})
-          .sort({writetime: -1 })
-          .exec(cb);
+          .sort({writetime: -1 });
   },
   findByIds: function(heartids , cb){
     return this
           .find({_id: { $in:heartids} , freeze : 0})
-          .sort({writetime: -1 })
-          .exec(cb);
+          .sort({writetime: -1 });
   },
   findByFreeze: function(freeze , start , pagesize , cb){
     return this
              .find({freeze : freeze})
              .sort({writetime: -1 })
              .limit(pagesize)
-             .skip(start)
-             .exec(cb);
+             .skip(start);
   },
   fetch: function(start , pagesize , cb){
     return this
              .find()
              .sort({writetime: -1 })
              .limit(pagesize)
-             .skip(start)
-             .exec(cb);
-  },
-  fetchAll: function(cb){
-    return this
-             .find()
-             .exec(cb);
+             .skip(start);
   },
   findCount : function(cb){
-    return this.find().count().exec(cb);
+    return this.find().count();
   },
   findFreeze : function(freeze , cb){
     return this
              .find({freeze : freeze})
-             .count()
-             .exec(cb);
+             .count();
   }
 };
 

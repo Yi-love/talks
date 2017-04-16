@@ -6,16 +6,6 @@ const User = require('./../../models/user');
 const constant = require('./../../config/constant.js');
 
 exports.checkUserByuserName = async (ctx)=>{
-  function findByUserName(un){
-    return new Promise((resolve ,reject)=>{
-      User.findByUserName(un+'' , (err,results)=>{
-        if (err) {
-          return reject(err);
-        }
-        return resolve(results);
-      });
-    }).catch(err=>err);
-  }
   if ( !ctx.query.username ) {
     return ctx.JsonResponse.error('username is gone.');
   }
@@ -27,7 +17,7 @@ exports.checkUserByuserName = async (ctx)=>{
   }
   console.log('checkUserByuserName name : ' , username);
 
-  let user = await findByUserName(username);
+  let user = await User.findByUserName(username+'').catch(err=>err);
 
   console.log('checkUserByuserName of find user: ' , user);
 
@@ -46,14 +36,7 @@ exports.signup = async (ctx)=>{
       password : crypto.createHash('sha256').update(user.password).digest('hex'),
       username : user.username
     });
-    return new Promise((resolve , reject)=>{
-      newUser.save((err,u)=>{
-        if (err) {
-          return reject(err);
-        }
-        return resolve(u);
-      });
-    }).catch(err=>err);
+    return newUser.save().catch(err=>err);
   };
 
   let userInfo = ctx.request.body;

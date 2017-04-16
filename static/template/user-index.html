@@ -1,90 +1,38 @@
 <div class="user-index-wrapper">
-  <div class="center-wrapper">
+  <div class="center-wrapper" [ngClass]="{'forbidden-scroll':showMenu}">
     <div class="heart-list">
-      <div class="heart-i">
+      <div class="heart-i" *ngFor="let heart of hearts">
         <div class="heart-i-pank">
-          <div class="pank-wrapper"></div> 
+          <div class="pank-wrapper">
+            <!-- <div class="heart-thumb">
+              <img class="thumb" src="images/photo/1.jpg" alt="">
+            </div> -->
+            <ul class="heart-photo-list">
+              <li class="photo-i" *ngFor="let thumbi of heart.writeimgs"><img class="photo" src="{{thumbi}}" alt=""></li>
+            </ul>
+            <div class="swipe-bar" *ngIf="heart.writeimgs.length > 0 ">
+              <i class="icon-radio-unchecked" *ngFor="let thumbi of heart.writeimgs;index as i;"></i>
+            </div>
+          </div>
+          <div class="heart-i-op">
+            <i class="icon-mention" (click)="sendMessage()"></i>
+            <i class="icon-heart2" (click)="sendHeart()"></i>
+          </div>
         </div>
         <div class="heart-i-content">
-          <h3 class="haert-i-title">Introduction</h3>
-          <article class="heart-i-text">
-            Koa is a new web framework designed by the team behind Express, which aims to be a smaller, more expressive, and more robust foundation for web applications and 
-          </article>
+          <h3 class="haert-i-username"><span class="username">{{heart.nickname}}</span><span class="location"><i class="icon-location2"></i>{{heart.location}}</span></h3>
+          <article class="heart-i-text">{{heart.content}}</article>
         </div>
-        <div class="hear-i-operator"><a href="" class="heart-read-more">Read More</a></div>
-      </div>
-      <div class="heart-i">
-        <div class="heart-i-pank">
-          <div class="pank-wrapper"></div> 
-        </div>
-        <div class="heart-i-content">
-          <h3 class="haert-i-title">Introduction</h3>
-          <article class="heart-i-text">
-            Koa is a new web framework designed by the team behind Express, which aims to be a smaller, more expressive, and more robust foundation for web applications and 
-          </article>
-        </div>
-        <div class="hear-i-operator"><a href="" class="heart-read-more">Read More</a></div>
-      </div>
-      <div class="heart-i">
-        <div class="heart-i-pank">
-          <div class="pank-wrapper"></div> 
-        </div>
-        <div class="heart-i-content">
-          <h3 class="haert-i-title">Introduction</h3>
-          <article class="heart-i-text">
-            Koa is a new web framework designed by the team behind Express, which aims to be a smaller, more expressive, and more robust foundation for web applications and 
-          </article>
-        </div>
-        <div class="hear-i-operator"><a href="" class="heart-read-more">Read More</a></div>
-      </div>
-      <div class="heart-i">
-        <div class="heart-i-pank">
-          <div class="pank-wrapper"></div> 
-        </div>
-        <div class="heart-i-content">
-          <h3 class="haert-i-title">Introduction</h3>
-          <article class="heart-i-text">
-            Koa is a new web framework designed by the team behind Express, which aims to be a smaller, more expressive, and more robust foundation for web applications and 
-          </article>
-        </div>
-        <div class="hear-i-operator"><a href="" class="heart-read-more">Read More</a></div>
-      </div>
-      <div class="heart-i">
-        <div class="heart-i-pank">
-          <div class="pank-wrapper"></div> 
-        </div>
-        <div class="heart-i-content">
-          <h3 class="haert-i-title">Introduction</h3>
-          <article class="heart-i-text">
-            Koa is a new web framework designed by the team behind Express, which aims to be a smaller, more expressive, and more robust foundation for web applications and 
-          </article>
-        </div>
-        <div class="hear-i-operator"><a href="" class="heart-read-more">Read More</a></div>
-      </div>
-      <div class="heart-i">
-        <div class="heart-i-pank">
-          <div class="pank-wrapper"></div> 
-        </div>
-        <div class="heart-i-content">
-          <h3 class="haert-i-title">Introduction</h3>
-          <article class="heart-i-text">
-            Koa is a new web framework designed by the team behind Express, which aims to be a smaller, more expressive, and more robust foundation for web applications and 
-          </article>
-        </div>
-        <div class="hear-i-operator"><a href="" class="heart-read-more">Read More</a></div>
+        <div class="heart-i-operator"><a href="" class="heart-read-more"><i class="icon-steps"></i>Read More</a></div>
       </div>
     </div>
   </div>
   <div class="top-bar-wrapper">
-    <span class="top-left"><i class="icon-location"></i></span>
-    <span class="top-username">{{user.nickname}}</span>
-    <span class="top-right"><i class="icon-podcast"></i></span>
+    <span class="top-left" (click)="onSelectMenu()"><i class="icon-menu" *ngIf="!showMenu"></i>
+    <i class="icon-arrow-left2" *ngIf="showMenu"></i></span>
+    <a class="top-right" routerLink="/user/{{user.id}}"><span class="username">Me</span><img class="userimg" src="{{user.userimg}}" alt=""></a>
   </div>
   <div class="menu-list-wrapper" [ngClass]="{'active':showMenu}">
-  </div>
-  <div class="menu-wrapper" (click)="onSelectMenu()">
-    <i class="icon-menu" *ngIf="!showMenu"></i>
-    <i class="icon-cross" *ngIf="showMenu"></i>
   </div>
   <div class="error-wrapper" [ngClass]="{'active':error}">
     <span class="error-center"><i class="icon-warning"></i> {{error}}</span>
