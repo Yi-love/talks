@@ -18,7 +18,7 @@ import { RegisterService } from './services/register.service';
 import { LoginService } from './services/login.service';
 import { UserIndexService } from './services/user-index.service';
 import { HeartService } from './services/heart.service';
-
+import { ErrorService } from './services/error.service';
 
 @NgModule({
   imports:[ BrowserModule ,
@@ -37,7 +37,8 @@ import { HeartService } from './services/heart.service';
   providers: [ RegisterService ,
                LoginService ,
                UserIndexService ,
-               HeartService
+               HeartService ,
+               ErrorService
   ],
   bootstrap:[ AppComponent ]
 })

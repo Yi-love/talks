@@ -3,7 +3,8 @@ import { ActivatedRoute , Params } from '@angular/router';
 
 import { UserIndexService } from '../services/user-index.service';
 import { HeartService } from '../services/heart.service';
-
+import { BaseComponent } from './base.component';
+import { ErrorService } from '../services/error.service';
 import { UserInfo } from '../models/user-info.model';
 import { Heart } from '../models/heart.model';
 
@@ -12,15 +13,18 @@ import { Heart } from '../models/heart.model';
   templateUrl: 'template/user-index.html',
   styleUrls: ['css/user-index.css'],
 })
-export class UserIndexComponent implements OnInit {
+export class UserIndexComponent extends BaseComponent implements OnInit {
   user = new UserInfo();
-  hearts : Heart[];
+  hearts : Heart[] = [];
   error: string = '';
   showMenu = false;
   errorHandler : any;
   constructor( private userIndexService : UserIndexService ,
                private route : ActivatedRoute ,
-               private heartService : HeartService){}
+               private heartService : HeartService ,
+               errorService : ErrorService ){
+    super(errorService);
+  }
 
   ngOnInit():void{
     this.route.params
@@ -28,17 +32,8 @@ export class UserIndexComponent implements OnInit {
               .then(result=>this.user=result['user'],this.clearError.bind(this)));
     this.getHearts();
   }
-  clearError(error:any){
-    console.log('error:' , error);
-    clearTimeout(this.errorHandler);
-    this.error = error;
-    this.errorHandler = setTimeout(()=>{
-      this.error = '';
-    } , 4000);
-  }
   onSelectMenu(){
     this.showMenu = !this.showMenu;
-    console.log(this.showMenu);
   }
   getHearts(){
     return this.heartService.getHearts().then(result=>this.hearts=result['hearts'],this.clearError.bind(this));
@@ -47,6 +42,6 @@ export class UserIndexComponent implements OnInit {
 
   }
   sendHeart(){
-    
+
   }
 }

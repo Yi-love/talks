@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import * as crypto from 'crypto';
 
 import { LoginService } from '../services/login.service';
+import { BaseComponent } from './base.component';
+import { ErrorService } from '../services/error.service';
 
 import { User } from '../models/user.model';
 
@@ -13,7 +15,7 @@ import { User } from '../models/user.model';
   templateUrl: 'template/login.html',
   styleUrls: ['css/login.css'],
 })
-export class LoginComponent implements AfterViewChecked {
+export class LoginComponent extends BaseComponent implements AfterViewChecked {
   user:User = new User();
   valids = {'username':false , 'password':false};
   empty = {'username':true , 'password':true};
@@ -26,7 +28,10 @@ export class LoginComponent implements AfterViewChecked {
   @ViewChild('loginUser') currentForm:NgForm;
 
   constructor( private loginService : LoginService , 
-               private router : Router ){}
+               private router : Router ,
+               errorService : ErrorService ){
+    super(errorService);
+  }
 
   ngAfterViewChecked() {
     this.formChanged();
@@ -109,12 +114,5 @@ export class LoginComponent implements AfterViewChecked {
     return this.loginService.getSecretLoginKey();
   }
 
-  clearError(error:any){
-    console.log('error:' , error);
-    clearTimeout(this.errorHandler);
-    this.error = error;
-    this.errorHandler = setTimeout(()=>{
-      this.error = '';
-    } , 4000);
-  }
+  
 }

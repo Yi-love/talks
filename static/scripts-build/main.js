@@ -51107,25 +51107,43 @@ module.exports = Sha512
 
 "use strict";
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(2);
-var IndexComponent = (function () {
-    function IndexComponent() {
+var base_component_1 = __webpack_require__(229);
+var error_service_1 = __webpack_require__(230);
+var IndexComponent = (function (_super) {
+    __extends(IndexComponent, _super);
+    function IndexComponent(errorService) {
+        return _super.call(this, errorService) || this;
     }
     return IndexComponent;
-}());
+}(base_component_1.BaseComponent));
 IndexComponent = __decorate([
     core_1.Component({
         selector: 'index-app',
         templateUrl: 'template/index.html',
         styleUrls: ['css/index.css'],
-    })
+    }),
+    __metadata("design:paramtypes", [error_service_1.ErrorService])
 ], IndexComponent);
 exports.IndexComponent = IndexComponent;
 
@@ -51136,6 +51154,16 @@ exports.IndexComponent = IndexComponent;
 
 "use strict";
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -51151,17 +51179,22 @@ var forms_1 = __webpack_require__(39);
 var router_1 = __webpack_require__(19);
 var crypto = __webpack_require__(75);
 var login_service_1 = __webpack_require__(108);
+var base_component_1 = __webpack_require__(229);
+var error_service_1 = __webpack_require__(230);
 var user_model_1 = __webpack_require__(106);
-var LoginComponent = (function () {
-    function LoginComponent(loginService, router) {
-        this.loginService = loginService;
-        this.router = router;
-        this.user = new user_model_1.User();
-        this.valids = { 'username': false, 'password': false };
-        this.empty = { 'username': true, 'password': true };
-        this.isCanSubmit = false;
-        this.isSignIn = false;
-        this.error = '';
+var LoginComponent = (function (_super) {
+    __extends(LoginComponent, _super);
+    function LoginComponent(loginService, router, errorService) {
+        var _this = _super.call(this, errorService) || this;
+        _this.loginService = loginService;
+        _this.router = router;
+        _this.user = new user_model_1.User();
+        _this.valids = { 'username': false, 'password': false };
+        _this.empty = { 'username': true, 'password': true };
+        _this.isCanSubmit = false;
+        _this.isSignIn = false;
+        _this.error = '';
+        return _this;
     }
     LoginComponent.prototype.ngAfterViewChecked = function () {
         this.formChanged();
@@ -51244,17 +51277,8 @@ var LoginComponent = (function () {
     LoginComponent.prototype.getSecretKey = function () {
         return this.loginService.getSecretLoginKey();
     };
-    LoginComponent.prototype.clearError = function (error) {
-        var _this = this;
-        console.log('error:', error);
-        clearTimeout(this.errorHandler);
-        this.error = error;
-        this.errorHandler = setTimeout(function () {
-            _this.error = '';
-        }, 4000);
-    };
     return LoginComponent;
-}());
+}(base_component_1.BaseComponent));
 __decorate([
     core_1.ViewChild('loginUser'),
     __metadata("design:type", forms_1.NgForm)
@@ -51266,7 +51290,8 @@ LoginComponent = __decorate([
         styleUrls: ['css/login.css'],
     }),
     __metadata("design:paramtypes", [login_service_1.LoginService,
-        router_1.Router])
+        router_1.Router,
+        error_service_1.ErrorService])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 
@@ -51277,6 +51302,16 @@ exports.LoginComponent = LoginComponent;
 
 "use strict";
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -51292,19 +51327,23 @@ var forms_1 = __webpack_require__(39);
 var router_1 = __webpack_require__(19);
 var crypto = __webpack_require__(75);
 var register_service_1 = __webpack_require__(109);
+var base_component_1 = __webpack_require__(229);
+var error_service_1 = __webpack_require__(230);
 var register_user_model_1 = __webpack_require__(223);
-var RegisterComponent = (function () {
-    function RegisterComponent(registerService, router) {
-        this.registerService = registerService;
-        this.router = router;
-        this.user = new register_user_model_1.RegisterUser();
-        this.hasUser = false;
-        this.isSave = false;
-        this.isCanSubmit = false;
-        this.error = '';
-        this.valids = { 'username': false, 'password': false, 'repassword': false };
-        this.empty = { 'username': true, 'password': true, 'repassword': true };
-        this.vaildFiled = ['username', 'password', 'repassword'];
+var RegisterComponent = (function (_super) {
+    __extends(RegisterComponent, _super);
+    function RegisterComponent(registerService, router, errorService) {
+        var _this = _super.call(this, errorService) || this;
+        _this.registerService = registerService;
+        _this.router = router;
+        _this.user = new register_user_model_1.RegisterUser();
+        _this.hasUser = false;
+        _this.isSave = false;
+        _this.isCanSubmit = false;
+        _this.valids = { 'username': false, 'password': false, 'repassword': false };
+        _this.empty = { 'username': true, 'password': true, 'repassword': true };
+        _this.vaildFiled = ['username', 'password', 'repassword'];
+        return _this;
     }
     RegisterComponent.prototype.ngAfterViewChecked = function () {
         this.formChanged();
@@ -51424,17 +51463,8 @@ var RegisterComponent = (function () {
     RegisterComponent.prototype.getSecretKey = function () {
         return this.registerService.getSecretRegisterKey();
     };
-    RegisterComponent.prototype.clearError = function (error) {
-        var _this = this;
-        console.log('error:', error);
-        clearTimeout(this.errorHandler);
-        this.error = error;
-        this.errorHandler = setTimeout(function () {
-            _this.error = '';
-        }, 4000);
-    };
     return RegisterComponent;
-}());
+}(base_component_1.BaseComponent));
 __decorate([
     core_1.ViewChild('newUser'),
     __metadata("design:type", forms_1.NgForm)
@@ -51446,7 +51476,8 @@ RegisterComponent = __decorate([
         styleUrls: ['css/register.css'],
     }),
     __metadata("design:paramtypes", [register_service_1.RegisterService,
-        router_1.Router])
+        router_1.Router,
+        error_service_1.ErrorService])
 ], RegisterComponent);
 exports.RegisterComponent = RegisterComponent;
 
@@ -51457,6 +51488,16 @@ exports.RegisterComponent = RegisterComponent;
 
 "use strict";
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -51471,15 +51512,21 @@ var core_1 = __webpack_require__(2);
 var router_1 = __webpack_require__(19);
 var user_index_service_1 = __webpack_require__(57);
 var heart_service_1 = __webpack_require__(107);
+var base_component_1 = __webpack_require__(229);
+var error_service_1 = __webpack_require__(230);
 var user_info_model_1 = __webpack_require__(105);
-var UserIndexComponent = (function () {
-    function UserIndexComponent(userIndexService, route, heartService) {
-        this.userIndexService = userIndexService;
-        this.route = route;
-        this.heartService = heartService;
-        this.user = new user_info_model_1.UserInfo();
-        this.error = '';
-        this.showMenu = false;
+var UserIndexComponent = (function (_super) {
+    __extends(UserIndexComponent, _super);
+    function UserIndexComponent(userIndexService, route, heartService, errorService) {
+        var _this = _super.call(this, errorService) || this;
+        _this.userIndexService = userIndexService;
+        _this.route = route;
+        _this.heartService = heartService;
+        _this.user = new user_info_model_1.UserInfo();
+        _this.hearts = [];
+        _this.error = '';
+        _this.showMenu = false;
+        return _this;
     }
     UserIndexComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -51488,18 +51535,8 @@ var UserIndexComponent = (function () {
             .then(function (result) { return _this.user = result['user']; }, _this.clearError.bind(_this)); });
         this.getHearts();
     };
-    UserIndexComponent.prototype.clearError = function (error) {
-        var _this = this;
-        console.log('error:', error);
-        clearTimeout(this.errorHandler);
-        this.error = error;
-        this.errorHandler = setTimeout(function () {
-            _this.error = '';
-        }, 4000);
-    };
     UserIndexComponent.prototype.onSelectMenu = function () {
         this.showMenu = !this.showMenu;
-        console.log(this.showMenu);
     };
     UserIndexComponent.prototype.getHearts = function () {
         var _this = this;
@@ -51510,7 +51547,7 @@ var UserIndexComponent = (function () {
     UserIndexComponent.prototype.sendHeart = function () {
     };
     return UserIndexComponent;
-}());
+}(base_component_1.BaseComponent));
 UserIndexComponent = __decorate([
     core_1.Component({
         selector: 'user-index-app',
@@ -51519,7 +51556,8 @@ UserIndexComponent = __decorate([
     }),
     __metadata("design:paramtypes", [user_index_service_1.UserIndexService,
         router_1.ActivatedRoute,
-        heart_service_1.HeartService])
+        heart_service_1.HeartService,
+        error_service_1.ErrorService])
 ], UserIndexComponent);
 exports.UserIndexComponent = UserIndexComponent;
 
@@ -51530,6 +51568,16 @@ exports.UserIndexComponent = UserIndexComponent;
 
 "use strict";
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -51545,13 +51593,18 @@ var router_1 = __webpack_require__(19);
 var common_1 = __webpack_require__(26);
 var user_info_model_1 = __webpack_require__(105);
 var user_index_service_1 = __webpack_require__(57);
-var UserComponent = (function () {
-    function UserComponent(userIndexservice, route, location) {
-        this.userIndexservice = userIndexservice;
-        this.route = route;
-        this.location = location;
-        this.user = new user_info_model_1.UserInfo();
-        this.error = '';
+var base_component_1 = __webpack_require__(229);
+var error_service_1 = __webpack_require__(230);
+var UserComponent = (function (_super) {
+    __extends(UserComponent, _super);
+    function UserComponent(userIndexservice, route, location, errorService) {
+        var _this = _super.call(this, errorService) || this;
+        _this.userIndexservice = userIndexservice;
+        _this.route = route;
+        _this.location = location;
+        _this.user = new user_info_model_1.UserInfo();
+        _this.error = '';
+        return _this;
     }
     UserComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -51559,20 +51612,11 @@ var UserComponent = (function () {
             .subscribe(function (params) { return _this.userIndexservice.getUserInfo(params['uid'])
             .then(function (result) { return _this.user = result['user']; }, _this.clearError.bind(_this)); });
     };
-    UserComponent.prototype.clearError = function (error) {
-        var _this = this;
-        console.log('error:', error);
-        clearTimeout(this.errorHandler);
-        this.error = error;
-        this.errorHandler = setTimeout(function () {
-            _this.error = '';
-        }, 4000);
-    };
     UserComponent.prototype.goBack = function () {
         this.location.back();
     };
     return UserComponent;
-}());
+}(base_component_1.BaseComponent));
 UserComponent = __decorate([
     core_1.Component({
         selector: 'user-app',
@@ -51581,7 +51625,8 @@ UserComponent = __decorate([
     }),
     __metadata("design:paramtypes", [user_index_service_1.UserIndexService,
         router_1.ActivatedRoute,
-        common_1.Location])
+        common_1.Location,
+        error_service_1.ErrorService])
 ], UserComponent);
 exports.UserComponent = UserComponent;
 
@@ -53149,6 +53194,7 @@ var register_service_1 = __webpack_require__(109);
 var login_service_1 = __webpack_require__(108);
 var user_index_service_1 = __webpack_require__(57);
 var heart_service_1 = __webpack_require__(107);
+var error_service_1 = __webpack_require__(230);
 var AppModule = (function () {
     function AppModule() {
     }
@@ -53172,7 +53218,8 @@ AppModule = __decorate([
         providers: [register_service_1.RegisterService,
             login_service_1.LoginService,
             user_index_service_1.UserIndexService,
-            heart_service_1.HeartService
+            heart_service_1.HeartService,
+            error_service_1.ErrorService
         ],
         bootstrap: [app_component_1.AppComponent]
     })
@@ -93646,24 +93693,42 @@ exports.AppRoutingModule = AppRoutingModule;
 
 "use strict";
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(2);
-var AppComponent = (function () {
-    function AppComponent() {
+var base_component_1 = __webpack_require__(229);
+var error_service_1 = __webpack_require__(230);
+var AppComponent = (function (_super) {
+    __extends(AppComponent, _super);
+    function AppComponent(errorService) {
+        return _super.call(this, errorService) || this;
     }
     return AppComponent;
-}());
+}(base_component_1.BaseComponent));
 AppComponent = __decorate([
     core_1.Component({
         selector: 'talks-app',
         template: '<router-outlet></router-outlet>'
-    })
+    }),
+    __metadata("design:paramtypes", [error_service_1.ErrorService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 
@@ -94157,6 +94222,87 @@ module.exports = function(module) {
 /***/ (function(module, exports) {
 
 /* (ignored) */
+
+/***/ }),
+/* 229 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var BaseComponent = (function () {
+    function BaseComponent(errorService) {
+        this.errorService = errorService;
+        this.error = '';
+    }
+    BaseComponent.prototype.clearError = function (error) {
+        var _this = this;
+        clearTimeout(this.errorHandler);
+        this.error = error;
+        this.errorService.sendReport(encodeURIComponent(error));
+        this.errorHandler = setTimeout(function () {
+            _this.error = '';
+        }, 4000);
+    };
+    return BaseComponent;
+}());
+exports.BaseComponent = BaseComponent;
+
+
+/***/ }),
+/* 230 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(2);
+var http_1 = __webpack_require__(13);
+__webpack_require__(36);
+var http_service_1 = __webpack_require__(38);
+var ErrorService = (function (_super) {
+    __extends(ErrorService, _super);
+    function ErrorService(http) {
+        var _this = _super.call(this) || this;
+        _this.http = http;
+        _this.reportUrl = 'api/error/report';
+        return _this;
+    }
+    ErrorService.prototype.sendReport = function (reason) {
+        var params = new http_1.URLSearchParams("reason=" + reason);
+        var options = new http_1.RequestOptions({ search: params });
+        this.http.get(this.reportUrl, options)
+            .toPromise()
+            .then(this.getResponse)
+            .catch(this.handleError);
+    };
+    return ErrorService;
+}(http_service_1.HttpService));
+ErrorService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], ErrorService);
+exports.ErrorService = ErrorService;
+
 
 /***/ })
 /******/ ]);

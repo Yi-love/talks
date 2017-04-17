@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 import * as crypto from 'crypto';
 
 import { RegisterService } from '../services/register.service';
-
+import { BaseComponent } from './base.component';
+import { ErrorService } from '../services/error.service';
 import { RegisterUser } from '../models/register-user.model';
 
 @Component({
@@ -13,13 +14,12 @@ import { RegisterUser } from '../models/register-user.model';
   templateUrl: 'template/register.html',
   styleUrls: ['css/register.css'],
 })
-export class RegisterComponent implements AfterViewChecked {
+export class RegisterComponent extends BaseComponent implements AfterViewChecked {
   user : RegisterUser = new RegisterUser();
   hasUser = false;
   isSave = false;
   isCanSubmit = false;
-  error: any = '';
-  errorHandler:any;
+  
   valids = {'username':false , 'password':false , 'repassword':false};
   empty = {'username':true , 'password':true , 'repassword':true};
   vaildFiled = [ 'username' ,'password' , 'repassword' ];
@@ -28,8 +28,10 @@ export class RegisterComponent implements AfterViewChecked {
   @ViewChild('newUser') currentForm:NgForm;
 
   constructor( private registerService : RegisterService , 
-               private router : Router ){}
-
+               private router : Router ,
+               errorService : ErrorService ){
+    super(errorService);
+  }
   ngAfterViewChecked() {
     this.formChanged();
   }
@@ -137,14 +139,5 @@ export class RegisterComponent implements AfterViewChecked {
   }
   getSecretKey(){
     return this.registerService.getSecretRegisterKey();
-  }
-
-  clearError(error:any){
-    console.log('error:' , error);
-    clearTimeout(this.errorHandler);
-    this.error = error;
-    this.errorHandler = setTimeout(()=>{
-      this.error = '';
-    } , 4000);
   }
 }
