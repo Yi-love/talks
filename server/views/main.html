@@ -5,22 +5,6 @@
   <title><%=title%></title>
   <base href="/">
   <% include layout/common-css.html %>
-  <script>
-    'use strict';
-    window.onerror = function(errorMessage, scriptURI, lineNumber,columnNumber,errorObj){
-      console.log('error report : ' , errorMessage , scriptURI , lineNumber , columnNumber , errorObj);
-      let img = new Image();
-      img.src='/api/error/report?reason='+JSON.stringify(errorMessage);
-      img.onload = function(){
-      };
-      img.onerror = function(){
-      };
-    };
-    console.error = function(){
-      let args = Array.prototype.slice.call(arguments);
-      throw (args[1] instanceof Error ? args[1] : new Error(args[1]));
-    };
-  </script>
 </head>
 <body>
   <h1 style="display: none;">Talks</h1>
