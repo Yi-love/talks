@@ -51499,6 +51499,7 @@ var UserIndexComponent = (function () {
     };
     UserIndexComponent.prototype.onSelectMenu = function () {
         this.showMenu = !this.showMenu;
+        console.log(this.showMenu);
     };
     UserIndexComponent.prototype.getHearts = function () {
         var _this = this;
@@ -93834,18 +93835,15 @@ var Slider = (function () {
         outer.style.webkitTransition = '-webkit-transform 0.2s ease-out';
         outer.style.transition = 'transform 0.2s ease-out';
         var transW = (this.idx * this.scaleW * (1 - this.pre * 2));
+        var dir = this.idx === 0 ? 1 : -1;
         if (this.idx === 0) {
             transW = this.scaleW * this.pre;
-            transW = transW;
-            outer.style.webkitTransform = 'translate3d(' + transW + 'px, 0, 0)';
-            outer.style.transform = 'translate3d(' + transW + 'px, 0, 0)';
         }
         else {
             transW -= this.scaleW * this.pre;
-            transW = transW;
-            outer.style.webkitTransform = 'translate3d(-' + transW + 'px, 0, 0)';
-            outer.style.transform = 'translate3d(-' + transW + 'px, 0, 0)';
         }
+        outer.style.webkitTransform = 'translate3d(' + transW * dir + 'px, 0, 0)';
+        outer.style.transform = 'translate3d(' + transW * dir + 'px, 0, 0)';
     };
     ;
     return Slider;

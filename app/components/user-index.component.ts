@@ -38,6 +38,7 @@ export class UserIndexComponent implements OnInit {
   }
   onSelectMenu(){
     this.showMenu = !this.showMenu;
+    console.log(this.showMenu);
   }
   getHearts(){
     return this.heartService.getHearts().then(result=>this.hearts=result['hearts'],this.clearError.bind(this));
