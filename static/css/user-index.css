@@ -59,7 +59,7 @@
   box-sizing: border-box;
   -webkit-overflow-scrolling : touch;
   padding: .5rem .5rem .5rem .5rem;
-  background: #f1f1f1;
+  background: #e1e1e1;
 }
 .center-wrapper.forbidden-scroll{
   overflow-y: hidden;
@@ -81,6 +81,7 @@
   height: auto;
   margin-bottom: 1.5rem;
   background: #fff;
+  box-shadow: 0 0 0.3rem 0.2rem #cbcbcb;
 }
 .heart-i-pank{
   width: 100%;
@@ -112,13 +113,13 @@
   vertical-align: middle;
 }
 .heart-photo-list{
-  width: 400%;
+  min-width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
 }
 .heart-photo-list .photo-i{
-  width: 25%;
+  /*width: 100%;*/
   height: 100%;
   list-style:none;
   margin: 0;
@@ -131,19 +132,16 @@
 }
 .swipe-bar{
   position: absolute;
-  bottom: 0;
-  left: .5rem;
-}
-.swipe-bar i{
-  padding: .5rem 0.2rem;
-  font-size: .6rem;
-  display: inline-block;
-}
-.swipe-bar .icon-radio-unchecked{
+  bottom: .6rem;
+  left: .6rem;
+  background: #b8b8b8;
   color: #fff;
-}
-.swipe-bar .icon-radio-checked{
-  color: #f141b6;
+  border-radius: .6rem;
+  box-sizing: border-box;
+  padding: .2rem .6rem;
+  font-size: .6rem;
+  text-align: center;
+  box-shadow: 0 0 0.1rem 0.1rem #999797, 0 0 0.6rem 0.2rem #e2d6d6 inset
 }
 .heart-i-op{
   position: absolute;
@@ -186,10 +184,11 @@
 }
 .haert-i-username .location{
   padding-left: .5rem;
+  font-size: 1rem;
   color: #666;
 }
 .haert-i-username .location i{
-  color: #0d6ac1;
+  color: #4dd5f9;
   font-size: 1rem;
 }
 .heart-i-operator{

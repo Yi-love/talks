@@ -26,9 +26,7 @@ export class UserIndexComponent implements OnInit {
     this.route.params
               .subscribe(params=>this.userIndexService.getUserInfo(params['uid'])
               .then(result=>this.user=result['user'],this.clearError.bind(this)));
-    this.getHearts().then(result=>{
-      console.log(this.hearts);
-    });
+    this.getHearts();
   }
   clearError(error:any){
     console.log('error:' , error);

@@ -10,6 +10,8 @@ import { RegisterComponent } from './components/register.component';
 import { UserIndexComponent } from './components/user-index.component';
 import { UserComponent } from './components/user.component';
 
+import { SwipeDirective } from './directives/swipe.directive';
+
 import { AppRoutingModule } from './app-routing.module';
 
 import { RegisterService } from './services/register.service';
@@ -17,12 +19,11 @@ import { LoginService } from './services/login.service';
 import { UserIndexService } from './services/user-index.service';
 import { HeartService } from './services/heart.service';
 
-import { StringSplitPipe } from './pipes/string-split.pipe';
 
 @NgModule({
   imports:[ BrowserModule ,
             FormsModule ,
-            HttpModule,
+            HttpModule ,
             AppRoutingModule
   ],
   declarations:[ AppComponent ,
@@ -31,7 +32,7 @@ import { StringSplitPipe } from './pipes/string-split.pipe';
                  RegisterComponent ,
                  UserIndexComponent , 
                  UserComponent ,
-                 StringSplitPipe
+                 SwipeDirective
   ],
   providers: [ RegisterService ,
                LoginService ,

@@ -10,7 +10,7 @@ import { UserIndexService } from '../services/user-index.service';
   templateUrl: 'template/user.html',
   styleUrls: ['css/user.css'],
 })
-export class UserComponent {
+export class UserComponent  implements OnInit {
   user : UserInfo = new UserInfo();
   errorHandler : any;
   error:string = '';
