@@ -51227,7 +51227,7 @@ var LoginComponent = (function () {
                 return _this.signIn(userData).then(function (result) {
                     if (result.isSignIn) {
                         _this.isSignIn = true;
-                        _this.router.navigate(['/userIndex', result.uid]);
+                        return _this.router.navigate(['/userIndex', result.uid]);
                     }
                     else {
                         _this.isCanSubmit = false;

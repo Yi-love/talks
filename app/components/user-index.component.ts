@@ -47,6 +47,6 @@ export class UserIndexComponent implements OnInit {
 
   }
   sendHeart(){
-
+    
   }
 }

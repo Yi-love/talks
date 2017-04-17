@@ -1,9 +1,10 @@
 'use strict';
 
 const router = require('koa-router')();
-const register = require('./register.js');
-const login = require('./login.js');
+const register = require('./register');
+const login = require('./login');
 const heart = require('./heart');
+const error = require('./error');
 
 router.prefix('/api');
 
@@ -17,5 +18,6 @@ router.get('/getUserInfo',login.getUserInfo);
 
 router.get('/heart/hearts' , heart.hearts);
 
+router.get('/error/report' , error.report);
 
 module.exports = router;
