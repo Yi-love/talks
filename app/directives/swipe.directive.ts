@@ -6,12 +6,15 @@ import { Directive, ElementRef, OnInit , Input } from '@angular/core';
 export class SwipeDirective  implements OnInit {
   slider : any ;
   @Input() imgsLen : number;
+  @Input() swipeList : string;
+  @Input() swipeText : string;
+
   constructor(private elemt: ElementRef ) {}
 
   ngOnInit(){
     let self = this.elemt.nativeElement;
     if ( this.imgsLen > 1 ) {
-      this.slider = new Slider(self.querySelector('.heart-photo-list') ,this.imgsLen , 0 , self ,self.querySelector('.swipe-bar'));
+      this.slider = new Slider(self.querySelector(this.swipeList) ,this.imgsLen , 0 , self ,self.querySelector(this.swipeText));
     }
   }
 }
@@ -66,7 +69,7 @@ class Slider {
       self.startX = evt.touches[0].pageX;
       self.offsetX = 0;
       let target = evt.target;
-      while(target.nodeName != 'UL' && target.nodeName != 'BODY'){
+      while( target !== outer && target.nodeName != 'BODY' ){
         target = target.parentNode;
       }
       self.target = target;
@@ -110,7 +113,7 @@ class Slider {
             self.num.innerHTML = num_now+1+'/'+self.len;
         }else {
           self.goIndex('0');
-          }
+        }
       }
     };
     

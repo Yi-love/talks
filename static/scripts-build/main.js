@@ -93692,7 +93692,7 @@ var SwipeDirective = (function () {
     SwipeDirective.prototype.ngOnInit = function () {
         var self = this.elemt.nativeElement;
         if (this.imgsLen > 1) {
-            this.slider = new Slider(self.querySelector('.heart-photo-list'), this.imgsLen, 0, self, self.querySelector('.swipe-bar'));
+            this.slider = new Slider(self.querySelector(this.swipeList), this.imgsLen, 0, self, self.querySelector(this.swipeText));
         }
     };
     return SwipeDirective;
@@ -93701,6 +93701,14 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Number)
 ], SwipeDirective.prototype, "imgsLen", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], SwipeDirective.prototype, "swipeList", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], SwipeDirective.prototype, "swipeText", void 0);
 SwipeDirective = __decorate([
     core_1.Directive({
         selector: '[swipe]'
@@ -93752,7 +93760,7 @@ var Slider = (function () {
             self.startX = evt.touches[0].pageX;
             self.offsetX = 0;
             var target = evt.target;
-            while (target.nodeName != 'UL' && target.nodeName != 'BODY') {
+            while (target !== outer && target.nodeName != 'BODY') {
                 target = target.parentNode;
             }
             self.target = target;
