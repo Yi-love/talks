@@ -8,7 +8,7 @@
   <script>
     'use strict';
     window.onerror = function(errorMessage, scriptURI, lineNumber,columnNumber,errorObj){
-      console.log('error report : ' , errorMessage , scriptURI , lineNumber , columnNumber , errorObj);
+      console.log('JS error report : ' , errorMessage , scriptURI , lineNumber , columnNumber , errorObj);
       let img = new Image();
       img.src='/api/error/report?reason='+encodeURIComponent(errorMessage);
       img.onload = function(){
