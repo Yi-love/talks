@@ -94212,12 +94212,20 @@ var ErrorComponent = (function () {
         this.timeout = true;
         this.clearError = new core_1.EventEmitter();
     }
+    /**
+     * [ngOnChanges 有数据变化的时候会调用，ng开头的是ng内部生命钩子事件]
+     * @param {SimpleChange} changes [内部类]
+     */
     ErrorComponent.prototype.ngOnChanges = function (changes) {
         console.log(changes['error']);
         if (changes['error'] && changes['error'].currentValue !== '') {
             this.showError(changes['error'].currentValue);
         }
     };
+    /**
+     * [showError 展示错误提示 ， 默认4秒后会关闭错误， 通过@output传递给父亲组件]
+     * @param {string} error [description]
+     */
     ErrorComponent.prototype.showError = function (error) {
         var _this = this;
         clearTimeout(this.errorHandler);

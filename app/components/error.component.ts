@@ -13,12 +13,20 @@ export class ErrorComponent{
   errorHandler: any;
   constructor(private errorService : ErrorService){
   }
+  /**
+   * [ngOnChanges 有数据变化的时候会调用，ng开头的是ng内部生命钩子事件]
+   * @param {SimpleChange} changes [内部类]
+   */
   ngOnChanges(changes:SimpleChange){
     console.log(changes['error']);
     if ( changes['error'] && changes['error'].currentValue !== '' ) {
       this.showError(changes['error'].currentValue);
     }
   }
+  /**
+   * [showError 展示错误提示 ， 默认4秒后会关闭错误， 通过@output传递给父亲组件]
+   * @param {string} error [description]
+   */
   showError(error: string){
     clearTimeout(this.errorHandler);
     this.error = error;
