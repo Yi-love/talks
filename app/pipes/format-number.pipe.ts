@@ -1,5 +1,10 @@
 import { Pipe , PipeTransform } from '@angular/core';
 
+/**
+ * eq: {{123213.88888| formatNumber:','}}
+ *     return 123,213.888,88
+ */
+
 @Pipe({
   name: 'formatNumber'
 })

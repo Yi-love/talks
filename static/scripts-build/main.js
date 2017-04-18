@@ -22514,7 +22514,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(2);
 var http_1 = __webpack_require__(10);
-__webpack_require__(28);
+__webpack_require__(28); //解决异步和事件组合的问题 https://github.com/Reactive-Extensions/RxJS
 var http_service_1 = __webpack_require__(29);
 var ErrorService = (function (_super) {
     __extends(ErrorService, _super);
@@ -34017,6 +34017,9 @@ Observable_1.Observable.prototype.toPromise = toPromise_1.toPromise;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var http_1 = __webpack_require__(10);
+/**
+ * http封装
+ */
 var HttpService = (function () {
     function HttpService() {
     }
@@ -51205,7 +51208,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(2);
 var forms_1 = __webpack_require__(41);
 var router_1 = __webpack_require__(21);
-var crypto = __webpack_require__(77);
+var crypto = __webpack_require__(77); //加密模块 , 需npm install --save-dev @types/node
 var login_service_1 = __webpack_require__(110);
 var user_model_1 = __webpack_require__(108);
 var LoginComponent = (function () {
@@ -51219,8 +51222,11 @@ var LoginComponent = (function () {
         this.isSignIn = false;
         this.error = '';
     }
+    /**
+     * [ngAfterViewChecked 会在页面改变的时候触发]
+     */
     LoginComponent.prototype.ngAfterViewChecked = function () {
-        this.formChanged();
+        this.formChanged(); //进行表单校验
     };
     LoginComponent.prototype.formChanged = function () {
         var _this = this;
@@ -51233,6 +51239,10 @@ var LoginComponent = (function () {
                 .subscribe(function (data) { return _this.onValueChanged(data); });
         }
     };
+    /**
+     * [onValueChanged 自己进行数据校验，可自己定义校验指令。这里使用的是默认的校验指令]
+     * @param {any} data [description]
+     */
     LoginComponent.prototype.onValueChanged = function (data) {
         if (!this.loginUser) {
             return;
@@ -51269,6 +51279,9 @@ var LoginComponent = (function () {
         }
         return this.isCanSubmit = true;
     };
+    /**
+     * [onSubmit 提交数据]
+     */
     LoginComponent.prototype.onSubmit = function () {
         var _this = this;
         this.getSecretKey().then(function (res) {
@@ -51527,7 +51540,7 @@ var UserIndexComponent = (function () {
     UserIndexComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params
-            .subscribe(function (params) { return _this.userIndexService.getUserInfo(params['uid'])
+            .subscribe(function (params) { return _this.userIndexService.getUserInfo(params['uid']) //接受登录跳转过来的参数，使用uid查询用户信息
             .then(function (user) { return _this.user = user; }, function (error) { return _this.error = error; }); });
         this.getHearts();
     };
@@ -53176,6 +53189,9 @@ var login_service_1 = __webpack_require__(110);
 var user_index_service_1 = __webpack_require__(59);
 var heart_service_1 = __webpack_require__(109);
 var error_service_1 = __webpack_require__(14);
+/**
+ * 使用到的模块需要在这里进行注入
+ */
 var AppModule = (function () {
     function AppModule() {
     }
@@ -94206,11 +94222,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(2);
 var error_service_1 = __webpack_require__(14);
+/**
+ * [Component 错误提示组件]
+ * eq:  <error-app [(error)]="error" (clearError)="error=$event"></error-app>
+ */
 var ErrorComponent = (function () {
     function ErrorComponent(errorService) {
         this.errorService = errorService;
         this.timeout = true;
-        this.clearError = new core_1.EventEmitter();
+        this.clearError = new core_1.EventEmitter(); //暴露给外部
     }
     /**
      * [ngOnChanges 有数据变化的时候会调用，ng开头的是ng内部生命钩子事件]
@@ -94277,6 +94297,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(2);
+/**
+ * eq: {{123213.88888| formatNumber:','}}
+ *     return 123,213.888,88
+ */
 var FormatNumberPipe = (function () {
     function FormatNumberPipe() {
     }

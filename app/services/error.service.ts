@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http , URLSearchParams ,RequestOptions } from '@angular/http';
 
-import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/toPromise';//解决异步和事件组合的问题 https://github.com/Reactive-Extensions/RxJS
 
 import { HttpService } from './http.service';
 

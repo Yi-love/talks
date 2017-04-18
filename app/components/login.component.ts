@@ -2,7 +2,7 @@ import { Component  , AfterViewChecked , ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import * as crypto from 'crypto';
+import * as crypto from 'crypto';//加密模块 , 需npm install --save-dev @types/node
 
 import { LoginService } from '../services/login.service';
 
@@ -21,14 +21,16 @@ export class LoginComponent implements AfterViewChecked {
   isSignIn = false;
   error: string = '';
   loginUser:NgForm;
-  @ViewChild('loginUser') currentForm:NgForm;
+  @ViewChild('loginUser') currentForm:NgForm;//备份，好进行比较
 
   constructor( private loginService : LoginService , 
                private router : Router ){
   }
-
+  /**
+   * [ngAfterViewChecked 会在页面改变的时候触发]
+   */
   ngAfterViewChecked() {
-    this.formChanged();
+    this.formChanged();//进行表单校验
   }
 
   formChanged(){
@@ -41,6 +43,10 @@ export class LoginComponent implements AfterViewChecked {
       .subscribe(data=>this.onValueChanged(data));
     }
   }
+  /**
+   * [onValueChanged 自己进行数据校验，可自己定义校验指令。这里使用的是默认的校验指令]
+   * @param {any} data [description]
+   */
   onValueChanged(data?:any){
     if ( !this.loginUser ){
       return;
@@ -75,7 +81,9 @@ export class LoginComponent implements AfterViewChecked {
     }
     return this.isCanSubmit = true;
   }
-
+  /**
+   * [onSubmit 提交数据]
+   */
   onSubmit(){
     this.getSecretKey().then(res=>{
       if( res.lsecret ) {

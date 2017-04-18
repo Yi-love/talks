@@ -1,5 +1,7 @@
 import { Response } from '@angular/http';
-
+/**
+ * http封装
+ */
 export class HttpService {
   constructor(){}
 

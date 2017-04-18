@@ -24,7 +24,7 @@ export class UserIndexComponent implements OnInit {
 
   ngOnInit():void{
     this.route.params
-              .subscribe(params=>this.userIndexService.getUserInfo(params['uid'])
+              .subscribe(params=>this.userIndexService.getUserInfo(params['uid'])//接受登录跳转过来的参数，使用uid查询用户信息
               .then(user=>this.user=user,error=>this.error=error));
     this.getHearts();
   }

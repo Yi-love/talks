@@ -23,6 +23,10 @@ import { UserIndexService } from './services/user-index.service';
 import { HeartService } from './services/heart.service';
 import { ErrorService } from './services/error.service';
 
+/**
+ * 使用到的模块需要在这里进行注入
+ */
+
 @NgModule({
   imports:[ BrowserModule ,
             FormsModule ,

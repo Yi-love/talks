@@ -1,15 +1,18 @@
 import { Component , Input , Output ,SimpleChange ,EventEmitter } from '@angular/core';
 import { ErrorService } from '../services/error.service';
-
+/**
+ * [Component 错误提示组件]
+ * eq:  <error-app [(error)]="error" (clearError)="error=$event"></error-app>
+ */
 @Component({
   selector: 'error-app',
   templateUrl: 'template/error.html',
   styleUrls:['css/error.css']
 })
 export class ErrorComponent{
-  @Input() error: string;
+  @Input() error: string; //接收注入的数据
   @Input() timeout: any = true;
-  @Output() clearError = new EventEmitter<any>();
+  @Output() clearError = new EventEmitter<any>();//暴露给外部
   errorHandler: any;
   constructor(private errorService : ErrorService){
   }
