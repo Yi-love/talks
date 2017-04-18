@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login.component';
 import { RegisterComponent } from './components/register.component';
 import { UserIndexComponent } from './components/user-index.component';
 import { UserComponent } from './components/user.component';
+import { ErrorComponent } from './components/error.component';
 
 import { SwipeDirective } from './directives/swipe.directive';
 
@@ -32,6 +33,7 @@ import { ErrorService } from './services/error.service';
                  RegisterComponent ,
                  UserIndexComponent , 
                  UserComponent ,
+                 ErrorComponent , 
                  SwipeDirective
   ],
   providers: [ RegisterService ,

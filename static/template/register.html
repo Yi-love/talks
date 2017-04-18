@@ -27,7 +27,5 @@
       <a routerLink="/login" class="normal-bt right login">Sign in</a>
     </div>
   </div>
-  <div class="error-wrapper" [ngClass]="{'active':error}">
-    <span class="error-center"><i class="icon-warning"></i> {{error}}</span>
-  </div>
+  <error-app [(error)]="error" (clearError)="error=$event"></error-app>
 </div>

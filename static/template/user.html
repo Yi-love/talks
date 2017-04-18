@@ -60,9 +60,6 @@
       <span class="user-title">Profile</span>
       <a class="top-right" routerLink=""><i class="icon-plus"></i></a>
     </div>
-    
   </div>
-  <div class="error-wrapper" [ngClass]="{'active':error}">
-    <span class="error-center"><i class="icon-warning"></i> {{error}}</span>
-  </div>
+  <error-app [(error)]="error" (clearError)="error=$event"></error-app>
 </div>

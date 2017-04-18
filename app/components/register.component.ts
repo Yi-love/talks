@@ -5,8 +5,7 @@ import { Router } from '@angular/router';
 import * as crypto from 'crypto';
 
 import { RegisterService } from '../services/register.service';
-import { BaseComponent } from './base.component';
-import { ErrorService } from '../services/error.service';
+
 import { RegisterUser } from '../models/register-user.model';
 
 @Component({
@@ -14,12 +13,12 @@ import { RegisterUser } from '../models/register-user.model';
   templateUrl: 'template/register.html',
   styleUrls: ['css/register.css'],
 })
-export class RegisterComponent extends BaseComponent implements AfterViewChecked {
+export class RegisterComponent implements AfterViewChecked {
   user : RegisterUser = new RegisterUser();
   hasUser = false;
   isSave = false;
   isCanSubmit = false;
-  
+  error : any = '';
   valids = {'username':false , 'password':false , 'repassword':false};
   empty = {'username':true , 'password':true , 'repassword':true};
   vaildFiled = [ 'username' ,'password' , 'repassword' ];
@@ -28,9 +27,7 @@ export class RegisterComponent extends BaseComponent implements AfterViewChecked
   @ViewChild('newUser') currentForm:NgForm;
 
   constructor( private registerService : RegisterService , 
-               private router : Router ,
-               errorService : ErrorService ){
-    super(errorService);
+               private router : Router ){
   }
   ngAfterViewChecked() {
     this.formChanged();
@@ -93,14 +90,18 @@ export class RegisterComponent extends BaseComponent implements AfterViewChecked
   }
   onRestHasUser(){
     this.hasUser = false;
+    this.error = '';
   }
   onCheckUserName(){
+    if ( !this.valids['username'] ) {
+      return ;
+    }
     this.isHasUser().then(hasUser=>{
       if( hasUser ) {
         this.isCanSubmit = false;
         return Promise.reject('user is has.');
       }
-    }).catch(this.clearError.bind(this));
+    }).catch(error=>this.error=error);
   }
   onSubmit(){
     this.isHasUser().then(hasUser=>{
@@ -118,15 +119,15 @@ export class RegisterComponent extends BaseComponent implements AfterViewChecked
               if( isSave ) {
                 return this.router.navigate(['/']);
               }
-            }).catch(this.clearError.bind(this));;
+            }).catch(error=>this.error=error);;
           }
           return Promise.reject('rsecret is gone');
-        }).catch(this.clearError.bind(this));
+        }).catch(error=>this.error=error);
       }else{
         this.isCanSubmit = false;
         return Promise.resolve('');
       }
-    }).catch(this.clearError.bind(this));
+    }).catch(error=>this.error=error);
   }
   isHasUser(){
     if( !this.user['username'] ) {

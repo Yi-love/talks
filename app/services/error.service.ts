@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { Http , URLSearchParams ,RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
@@ -8,9 +7,8 @@ import { HttpService } from './http.service';
 
 @Injectable()
 export class ErrorService extends HttpService {
-  private reportUrl = 'api/error/report';
-
-  constructor(private http : Http ) {
+  private reportUrl = '/api/error/report';
+  constructor( private http : Http ) {
     super();
   }
 

@@ -5,8 +5,6 @@ import { Router } from '@angular/router';
 import * as crypto from 'crypto';
 
 import { LoginService } from '../services/login.service';
-import { BaseComponent } from './base.component';
-import { ErrorService } from '../services/error.service';
 
 import { User } from '../models/user.model';
 
@@ -15,29 +13,25 @@ import { User } from '../models/user.model';
   templateUrl: 'template/login.html',
   styleUrls: ['css/login.css'],
 })
-export class LoginComponent extends BaseComponent implements AfterViewChecked {
+export class LoginComponent implements AfterViewChecked {
   user:User = new User();
   valids = {'username':false , 'password':false};
   empty = {'username':true , 'password':true};
   isCanSubmit = false;
   isSignIn = false;
   error:any = '';
-  errorHandler:any;
-
   loginUser:NgForm;
   @ViewChild('loginUser') currentForm:NgForm;
 
   constructor( private loginService : LoginService , 
-               private router : Router ,
-               errorService : ErrorService ){
-    super(errorService);
+               private router : Router ){
   }
 
   ngAfterViewChecked() {
     this.formChanged();
   }
 
-    formChanged(){
+  formChanged(){
     if(this.currentForm === this.loginUser ) {
       return;
     }
@@ -100,10 +94,10 @@ export class LoginComponent extends BaseComponent implements AfterViewChecked {
             this.isCanSubmit = false;
             return Promise.reject('login error');
           }
-        }).catch(this.clearError.bind(this));
+        }).catch(error=>this.error=error);
       }
       return Promise.reject('lsecret is gone');
-    }).catch(this.clearError.bind(this));
+    }).catch(error=>this.error=error);
   }
 
   signIn(data:any){
