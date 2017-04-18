@@ -16,7 +16,7 @@
           <span class="numser">FOLLOWERS</span>
         </div>
         <div class="user-following">
-          <span class="nums">{{user.following}}</span>
+          <span class="nums">{{user.following | formatNumber}}</span>
           <span class="numser">FOLLOWING</span>
         </div>
       </div>
@@ -37,7 +37,7 @@
         </li>
         <li class="row user-profile-i">
           <span class="profile-name">WeiXin</span>
-          <span class="profile-text">{{user.weixin ? user.weixin : 'Yi'}}</span>
+          <span class="profile-text">{{user.weixin ? user.weixin : 'Jin'}}</span>
         </li>
         <li class="row user-profile-i">
           <span class="profile-name">Age</span>
@@ -45,7 +45,7 @@
         </li>
         <li class="row user-profile-i">
           <span class="profile-name">Birthday</span>
-          <span class="profile-text">{{user.birthday ? user.birthday : '2016-10-12'}}</span>
+          <span class="profile-text">{{user.birthday | date:'y-MM-dd'}}</span>
         </li>
         <li class="row user-profile-i">
           <span class="profile-name">From</span>

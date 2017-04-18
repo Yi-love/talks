@@ -18,7 +18,7 @@ export class RegisterComponent implements AfterViewChecked {
   hasUser = false;
   isSave = false;
   isCanSubmit = false;
-  error : any = '';
+  error: string = '';
   valids = {'username':false , 'password':false , 'repassword':false};
   empty = {'username':true , 'password':true , 'repassword':true};
   vaildFiled = [ 'username' ,'password' , 'repassword' ];

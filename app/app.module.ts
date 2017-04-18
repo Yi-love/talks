@@ -13,6 +13,8 @@ import { ErrorComponent } from './components/error.component';
 
 import { SwipeDirective } from './directives/swipe.directive';
 
+import { FormatNumberPipe } from './pipes/format-number.pipe';
+
 import { AppRoutingModule } from './app-routing.module';
 
 import { RegisterService } from './services/register.service';
@@ -34,7 +36,8 @@ import { ErrorService } from './services/error.service';
                  UserIndexComponent , 
                  UserComponent ,
                  ErrorComponent , 
-                 SwipeDirective
+                 SwipeDirective ,
+                 FormatNumberPipe
   ],
   providers: [ RegisterService ,
                LoginService ,

@@ -47185,7 +47185,7 @@ var UserIndexService = (function (_super) {
         var options = new http_1.RequestOptions({ search: params });
         return this.http.get(this.getUserInfoUrl, options)
             .toPromise()
-            .then(this.getResponse);
+            .then(this.getResponse).then(function (result) { return result = result['user']; });
     };
     return UserIndexService;
 }(http_service_1.HttpService));
@@ -51528,7 +51528,7 @@ var UserIndexComponent = (function () {
         var _this = this;
         this.route.params
             .subscribe(function (params) { return _this.userIndexService.getUserInfo(params['uid'])
-            .then(function (result) { return _this.user = result['user']; }, function (error) { return _this.error = error; }); });
+            .then(function (user) { return _this.user = user; }, function (error) { return _this.error = error; }); });
         this.getHearts();
     };
     UserIndexComponent.prototype.onSelectMenu = function () {
@@ -51536,7 +51536,7 @@ var UserIndexComponent = (function () {
     };
     UserIndexComponent.prototype.getHearts = function () {
         var _this = this;
-        return this.heartService.getHearts().then(function (result) { return _this.hearts = result['hearts']; }, function (error) { return _this.error = error; });
+        return this.heartService.getHearts().then(function (hearts) { return _this.hearts = hearts; }, function (error) { return _this.error = error; });
     };
     UserIndexComponent.prototype.sendMessage = function () {
     };
@@ -51590,7 +51590,7 @@ var UserComponent = (function () {
         var _this = this;
         this.route.params
             .subscribe(function (params) { return _this.userIndexservice.getUserInfo(params['uid'])
-            .then(function (result) { return _this.user = result['user']; }, function (error) { return _this.error = error; }); });
+            .then(function (user) { return _this.user = user; }, function (error) { return _this.error = error; }); });
     };
     UserComponent.prototype.goBack = function () {
         this.location.back();
@@ -51681,7 +51681,7 @@ var HeartService = (function (_super) {
     HeartService.prototype.getHearts = function () {
         return this.http.get(this.getHeartUrl)
             .toPromise()
-            .then(this.getResponse);
+            .then(this.getResponse).then(function (result) { return result = result['hearts']; });
     };
     return HeartService;
 }(http_service_1.HttpService));
@@ -53169,6 +53169,7 @@ var user_index_component_1 = __webpack_require__(105);
 var user_component_1 = __webpack_require__(106);
 var error_component_1 = __webpack_require__(231);
 var swipe_directive_1 = __webpack_require__(223);
+var format_number_pipe_1 = __webpack_require__(232);
 var app_routing_module_1 = __webpack_require__(221);
 var register_service_1 = __webpack_require__(111);
 var login_service_1 = __webpack_require__(110);
@@ -53194,7 +53195,8 @@ AppModule = __decorate([
             user_index_component_1.UserIndexComponent,
             user_component_1.UserComponent,
             error_component_1.ErrorComponent,
-            swipe_directive_1.SwipeDirective
+            swipe_directive_1.SwipeDirective,
+            format_number_pipe_1.FormatNumberPipe
         ],
         providers: [register_service_1.RegisterService,
             login_service_1.LoginService,
@@ -94232,7 +94234,7 @@ var ErrorComponent = (function () {
 }());
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Object)
+    __metadata("design:type", String)
 ], ErrorComponent.prototype, "error", void 0);
 __decorate([
     core_1.Input(),
@@ -94251,6 +94253,50 @@ ErrorComponent = __decorate([
     __metadata("design:paramtypes", [error_service_1.ErrorService])
 ], ErrorComponent);
 exports.ErrorComponent = ErrorComponent;
+
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(2);
+var FormatNumberPipe = (function () {
+    function FormatNumberPipe() {
+    }
+    FormatNumberPipe.prototype.transform = function (value, exponent) {
+        if (value === void 0) { value = ''; }
+        if (exponent === void 0) { exponent = ','; }
+        value += '';
+        var arrValue = value.split('.');
+        return this.format(arrValue[0], exponent) + (arrValue[1] ? '.' + this.format(arrValue[1], exponent) : '');
+    };
+    FormatNumberPipe.prototype.format = function (source, exponent) {
+        var formatStr = '';
+        for (var i = 0; i < source.length; i++) {
+            formatStr += source[i];
+            if ((i + 1) % 3 === 0 && (i + 1) !== source.length) {
+                formatStr += exponent;
+            }
+        }
+        return formatStr;
+    };
+    return FormatNumberPipe;
+}());
+FormatNumberPipe = __decorate([
+    core_1.Pipe({
+        name: 'formatNumber'
+    })
+], FormatNumberPipe);
+exports.FormatNumberPipe = FormatNumberPipe;
 
 
 /***/ })

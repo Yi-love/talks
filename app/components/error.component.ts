@@ -7,7 +7,7 @@ import { ErrorService } from '../services/error.service';
   styleUrls:['css/error.css']
 })
 export class ErrorComponent{
-  @Input() error: any;
+  @Input() error: string;
   @Input() timeout: any = true;
   @Output() clearError = new EventEmitter<any>();
   errorHandler: any;
@@ -19,7 +19,7 @@ export class ErrorComponent{
       this.showError(changes['error'].currentValue);
     }
   }
-  showError(error:any){
+  showError(error: string){
     clearTimeout(this.errorHandler);
     this.error = error;
     this.errorService.sendReport(encodeURIComponent(error));

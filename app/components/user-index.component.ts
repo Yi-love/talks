@@ -13,9 +13,9 @@ import { Heart } from '../models/heart.model';
   styleUrls: ['css/user-index.css'],
 })
 export class UserIndexComponent implements OnInit {
-  user = new UserInfo();
+  user : UserInfo = new UserInfo();
   hearts : Heart[] = [];
-  error: any = '';
+  error: string = '';
   showMenu = false;
   constructor( private userIndexService : UserIndexService ,
                private route : ActivatedRoute ,
@@ -25,14 +25,14 @@ export class UserIndexComponent implements OnInit {
   ngOnInit():void{
     this.route.params
               .subscribe(params=>this.userIndexService.getUserInfo(params['uid'])
-              .then(result=>this.user=result['user'],error=>this.error=error));
+              .then(user=>this.user=user,error=>this.error=error));
     this.getHearts();
   }
   onSelectMenu(){
     this.showMenu = !this.showMenu;
   }
   getHearts(){
-    return this.heartService.getHearts().then(result=>this.hearts=result['hearts'],error=>this.error=error);
+    return this.heartService.getHearts().then(hearts=>this.hearts=hearts,error=>this.error=error);
   }
   sendMessage(){
 

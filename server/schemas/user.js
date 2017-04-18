@@ -38,8 +38,8 @@ let UserSchema = new mongoose.Schema({
   major : {type: String, default: ''},
   hobit : {type: String, default: ''},
   friendssay : {type: String, default: ''},
-  followers: {type: Number, default: 0},
-  following:{type: Number, default: 0},
+  followers: {type: Number, default: 99734},
+  following:{type: Number, default: 34542},
   ip: {type: String, default: ''},
   device : {type: String, default: ''},
   school : {type: String, default: 'New East'},
@@ -52,50 +52,47 @@ let UserSchema = new mongoose.Schema({
 });
 
 UserSchema.statics = {
-  fetch: function(start , pagesize , cb){
+  fetch: function(start , pagesize){
     return this
              .find()
              .limit(pagesize)
              .skip(start);
   },
-  findByFreeze: function(freeze , start , pagesize , cb){
+  findByFreeze: function(freeze , start , pagesize){
     return this
              .find({freeze : freeze})
              .limit(pagesize)
              .skip(start);
   },
-  findByUserName: function(username , cb){
+  findByUserName: function(username){
     return this
           .findOne({username: username});
   },
-  findById: function(id , cb){
+  findById: function(id){
     return this
               .findOne({_id: id});
   },
-  findByIdLike : function(id , cb){
+  findByIdLike : function(id){
     return this
              .find({_id : new RegExp(id)});
   },
-  findByNameLike : function(nickname , cb){
+  findByNameLike : function(nickname){
     return this
              .find({nickname : new RegExp(nickname)});
   },
-  findByLocationLike : function(location , cb){
+  findByLocationLike : function(location){
     return this
              .find({location : new RegExp(location)});
   },
-  findByOnline : function(online , cb){
+  findByOnline : function(online){
     return this
              .find({online : online})
              .count();
   },
-  findBySex : function(sex , cb){
+  findBySex : function(sex){
     return this
              .find({sex : sex})
              .count();
-  },
-  findCount : function(cb){
-    return this.count();
   }
 };
 

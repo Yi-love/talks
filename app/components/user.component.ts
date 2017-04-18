@@ -12,7 +12,7 @@ import { UserIndexService } from '../services/user-index.service';
 })
 export class UserComponent implements OnInit {
   user : UserInfo = new UserInfo();
-  error:any = '';
+  error: string = '';
   constructor( private userIndexservice : UserIndexService ,
                private route : ActivatedRoute ,
                private location : Location ){
@@ -20,7 +20,7 @@ export class UserComponent implements OnInit {
   ngOnInit():void{
     this.route.params
               .subscribe(params=>this.userIndexservice.getUserInfo(params['uid'])
-              .then(result=>this.user=result['user'],error=>this.error=error));
+              .then(user=>this.user=user,error=>this.error=error));
   }
   goBack(){
     this.location.back();

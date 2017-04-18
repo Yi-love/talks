@@ -5,6 +5,7 @@ import { Http , Response , Headers , RequestOptions ,URLSearchParams } from '@an
 import 'rxjs/add/operator/toPromise';
 
 import { HttpService } from './http.service';
+import { UserInfo } from '../models/user-info.model';
 
 @Injectable()
 export class UserIndexService extends HttpService {
@@ -14,11 +15,11 @@ export class UserIndexService extends HttpService {
     super();
   }
 
-  getUserInfo(uid:string):Promise<any>{
+  getUserInfo(uid:string):Promise<UserInfo>{
     let params = new URLSearchParams(`uid=${uid}`);
     let options = new RequestOptions({search:params});
     return this.http.get(this.getUserInfoUrl ,options)
                     .toPromise()
-                    .then(this.getResponse);
+                    .then(this.getResponse).then(result=>result=result['user']);
   }
 }

@@ -19,7 +19,7 @@ export class LoginComponent implements AfterViewChecked {
   empty = {'username':true , 'password':true};
   isCanSubmit = false;
   isSignIn = false;
-  error:any = '';
+  error: string = '';
   loginUser:NgForm;
   @ViewChild('loginUser') currentForm:NgForm;
 

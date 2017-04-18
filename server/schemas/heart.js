@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose');
 
 // 心里话对象
@@ -21,48 +23,45 @@ let HeartSchema = new mongoose.Schema({
 });
 
 HeartSchema.statics = {
-  findByUserid: function(userid , start , pagesize , cb){
+  findByUserid: function(userid , start , pagesize){
     return this
           .find({userid: userid , freeze : 0})
           .sort({writetime: -1 })
                 .limit(pagesize)
                 .skip(start);
   },
-  findByUserids: function(userids , start , pagesize , cb){
+  findByUserids: function(userids , start , pagesize){
     return this
           .find({userid: {$in: userids } , freeze : 0})
           .sort({writetime: -1 })
                 .limit(pagesize)
                 .skip(start);
   },
-  findById: function(heartid , cb){
+  findById: function(heartid){
     return this
           .findOne({_id: heartid})
           .sort({writetime: -1 });
   },
-  findByIds: function(heartids , cb){
+  findByIds: function(heartids){
     return this
           .find({_id: { $in:heartids} , freeze : 0})
           .sort({writetime: -1 });
   },
-  findByFreeze: function(freeze , start , pagesize , cb){
+  findByFreeze: function(freeze , start , pagesize){
     return this
              .find({freeze : freeze})
              .sort({writetime: -1 })
              .limit(pagesize)
              .skip(start);
   },
-  fetch: function(start , pagesize , cb){
+  fetch: function(start , pagesize){
     return this
              .find()
              .sort({writetime: -1 })
              .limit(pagesize)
              .skip(start);
   },
-  findCount : function(cb){
-    return this.find().count();
-  },
-  findFreeze : function(freeze , cb){
+  findFreeze : function(freeze){
     return this
              .find({freeze : freeze})
              .count();
