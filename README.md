@@ -29,5 +29,6 @@
 
 其实我很喜欢用手机访问，毕竟它是一个手机端的网站。
 
+> `127.0.0.1:3000/userIndex/:uid` 页面是没有mock数据的，多注册几个用户之后，可以通过`node server/store.js`添加数据。
 
 假如你对 koa2 + angular4 +TypeScript 感兴趣。我也写了一个小demo. 放在了 [koa-angular4-demo](https://github.com/Yi-love/koa-angular4-demo)这个项目了。
