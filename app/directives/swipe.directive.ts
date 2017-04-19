@@ -76,7 +76,7 @@ class Slider {
     };
     //手指移动
     let moveHandler = function(evt:any) {
-      evt.preventDefault();
+      // evt.preventDefault();
       self.offsetX = (evt.targetTouches[0].pageX - self.startX)+self.scaleW*self.pre;
       outer.style.webkitTransition = '-webkit-transform 0s ease-out';
       let transW = self.offsetX-self.idx*self.scaleW*(1-self.pre*2);

@@ -65,7 +65,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: #00dcff;
+  background: rgba(0, 220, 255, 0.75);;
   overflow: hidden;
 }
 .heart-thumb{
@@ -154,7 +154,7 @@
   color: #666;
 }
 .haert-i-username .location i{
-  color: #4dd5f9;
+  color: #14BDEB;
   font-size: 1rem;
 }
 .heart-i-operator{
@@ -176,10 +176,10 @@
   text-decoration: none;
   text-align: center;
   display: inline-block;
-  border:1px dashed #6dcec5;
+  border:1px dashed #EF798A;
   border-radius: 3rem;
   padding: .6rem 1.8rem;
-  color: #3cb19e;
+  color: #EF798A;
 }
 .heart-read-more i{
   font-size: 1.1rem;
@@ -191,7 +191,7 @@
   z-index: 7;
   width: 100%;
   box-sizing: border-box;
-  background: rgb(5, 177, 216);
+  background: #EF798A;
   box-shadow: 0 0.2rem 0.5rem rgba(10, 42, 51, 0.31)
 }
 .top-bar-wrapper::after{
@@ -232,7 +232,7 @@
   vertical-align: middle;
   display: inline-block;
   box-sizing: border-box;
-  border: 1px solid #046479;
+  border: 1px solid #A011D8;
 }
 .top-bar-wrapper .top-right .username{
   vertical-align: middle;

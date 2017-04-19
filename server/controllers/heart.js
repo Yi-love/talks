@@ -1,4 +1,4 @@
-const Heart = require('./../../models/heart');
+const Heart = require('../models/heart');
 
 exports.hearts = async (ctx)=>{
    let hearts = await Heart.find();

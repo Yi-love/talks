@@ -22,7 +22,7 @@
   box-sizing: border-box;
   position: relative;
   padding: 0 3rem;
-  background: #0fd0ef;
+  background: #EF798A;
 }
 .top-bar-wrapper .top-bar::after{
   clear: both;
@@ -69,7 +69,7 @@
   width: 100%;
   position: relative;
   padding-top: 3rem;
-  background: #0fd0ef;
+  background: #EF798A;
 }
 .user-info-center:after{
   clear: both;
@@ -150,11 +150,11 @@
 }
 .user-followers{
   float: left;
-  background: #0bc3e0;
+  background: #f56d80;
 }
 .user-following{
   float: right;
-  background: #03adc7;
+  background: #ea6d7f;
 }
 .user-followers .nums, 
 .user-following .nums{
@@ -198,7 +198,7 @@
   display: block;
 }
 .user-profile-i .profile-name{
-  color: #de5f0c;
+  color: #EF798A;
   font-size: .8rem;
   padding: .3rem 0;
 }

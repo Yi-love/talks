@@ -2,8 +2,9 @@
   width: 100%;
   height: 100%;
   position: relative;
-  background: url(/img/register_bg.jpg) center no-repeat;
-  background-size: 100% 100%;
+  background: #A011D8;
+  /*background: url(/img/register_bg.jpg) center no-repeat;*/
+  /*background-size: 100% 100%;*/
 }
 .go-back-index{
   padding:.5rem;
@@ -35,7 +36,7 @@
 }
 .normal-input{
   width: 100%;
-  padding: .5rem 2.5rem .5rem 2.5rem;
+  padding: .8rem 2.5rem .8rem 2.5rem;
   box-sizing: border-box;
   border: none;
   letter-spacing: 2px;
@@ -48,8 +49,7 @@
 }
 .normal-input:focus{
   outline: none;
-  box-shadow: 0px 2px 20px #8b7676;
-  border-radius: 2px;
+  box-shadow: 0px 2px 20px #655050;
   transform: translateY(-1px);
 }
 .normal-input::-webkit-input-placeholder{
@@ -60,7 +60,7 @@
   left: 0;
   top:0;
   font-size: 1.2rem;
-  padding: 0.4rem;
+  padding: 0.6rem;
   color: #fff;
 }
 .form-group .error{
@@ -68,7 +68,7 @@
   right: 0;
   top:0;
   font-size: 1.2rem;
-  padding: 0.4rem;
+  padding: 0.7rem;
   color: #fff;
 }
 .form-row{
@@ -89,12 +89,12 @@
   outline: none;
 }
 .bt.register{
-  background: #999;
+  background: #8B94A3;
   color: #fff;
   box-shadow: 0px 2px 2px #163549;
 }
 .bt.register.active{
-  background: #9a59b5;
+  background: #EF798A;
 }
 .row{
   width: 100%;
@@ -105,7 +105,7 @@
   padding: .5rem;
 }
 .normal-bt.login{
-  color: #3598db;
+  color: #14BDEB;
   display: inline-block;
   margin-top: .5rem;
 }
@@ -113,11 +113,11 @@
   float: right;
 }
 .form-group .icon-checkmark{
-  color: #08be08;
+  color: #35FF69;
 }
 .form-group .icon-cross{
-  color: #e10606;
+  color: #F13030;
 }
 .form-group .icon-warning{
-  color: #ff760a;
+  color: #EF798A;
 }

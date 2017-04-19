@@ -1,10 +1,10 @@
 'use strict';
 
 const router = require('koa-router')();
-const register = require('./register');
-const login = require('./login');
-const heart = require('./heart');
-const error = require('./error');
+const register = require('../controllers/register');
+const login = require('../controllers/login');
+const heart = require('../controllers/heart');
+const error = require('../controllers/error');
 
 router.prefix('/api');
 

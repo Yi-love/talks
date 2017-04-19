@@ -2,6 +2,11 @@
   height: 100%;
   width: 100%;
   background: url(/img/swipe/1.jpg) center no-repeat;
+  /*background: rgba(249,248,248,1);*/
+  /*background: rgba(183,211,242,1);*/
+  /*background: rgba(73,218,255,1);*/
+  /*background: rgba(226,49,179,1);*/
+  /*background: rgba(179,136,235,1);*/
   background-size: 100% 100%;
   position: relative;
 }
@@ -35,12 +40,12 @@
 }
 .index-nav-bar .nav-wrapper.login .nav-bt{
   float: right;
-  background-color: #3598db;
+  background-color: #14BDEB;
   box-shadow: 0px 2px 2px #163549;
 }
 .index-nav-bar .nav-wrapper.register .nav-bt{
   float: left;
-  background-color: #9a59b5;
+  background-color: #A011D8;
   box-shadow: 0px 2px 2px #331f3b;
 }
 .logo-wrapper{

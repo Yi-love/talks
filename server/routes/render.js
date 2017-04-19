@@ -1,7 +1,7 @@
 'use strict';
 
 const router = require('koa-router')();
-const common = require('./common.js');
+const common = require('../controllers/common');
 
 router.get('/register',common.index);
 router.get('/',common.index);

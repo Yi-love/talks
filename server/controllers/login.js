@@ -2,8 +2,8 @@
 
 const crypto = require('crypto');
 
-const User = require('./../../models/user');
-const constant = require('./../../config/constant.js');
+const User = require('../models/user');
+const constant = require('../config/constant');
 
 exports.signin = async (ctx)=>{
   let userInfo = ctx.request.body;
