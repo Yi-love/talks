@@ -21,7 +21,7 @@ export class ErrorComponent{
    * @param {SimpleChange} changes [内部类]
    */
   ngOnChanges(changes:SimpleChange){
-    console.log(changes['error']);
+    // console.log(changes['error']);
     if ( changes['error'] && changes['error'].currentValue !== '' ) {
       this.showError(changes['error'].currentValue);
     }
